@@ -1,0 +1,154 @@
+[
+	{
+		"model": "movies.genre",
+		"pk": 28,
+		"fields": {
+			"tmbd_genre_id": 28,
+			"name": "\uc561\uc158"
+		}
+	},
+	{
+		"model": "movies.genre",
+		"pk": 12,
+		"fields": {
+			"tmbd_genre_id": 12,
+			"name": "\ubaa8\ud5d8"
+		}
+	},
+	{
+		"model": "movies.genre",
+		"pk": 16,
+		"fields": {
+			"tmbd_genre_id": 16,
+			"name": "\uc560\ub2c8\uba54\uc774\uc158"
+		}
+	},
+	{
+		"model": "movies.genre",
+		"pk": 35,
+		"fields": {
+			"tmbd_genre_id": 35,
+			"name": "\ucf54\ubbf8\ub514"
+		}
+	},
+	{
+		"model": "movies.genre",
+		"pk": 80,
+		"fields": {
+			"tmbd_genre_id": 80,
+			"name": "\ubc94\uc8c4"
+		}
+	},
+	{
+		"model": "movies.genre",
+		"pk": 99,
+		"fields": {
+			"tmbd_genre_id": 99,
+			"name": "\ub2e4\ud050\uba58\ud130\ub9ac"
+		}
+	},
+	{
+		"model": "movies.genre",
+		"pk": 18,
+		"fields": {
+			"tmbd_genre_id": 18,
+			"name": "\ub4dc\ub77c\ub9c8"
+		}
+	},
+	{
+		"model": "movies.genre",
+		"pk": 10751,
+		"fields": {
+			"tmbd_genre_id": 10751,
+			"name": "\uac00\uc871"
+		}
+	},
+	{
+		"model": "movies.genre",
+		"pk": 14,
+		"fields": {
+			"tmbd_genre_id": 14,
+			"name": "\ud310\ud0c0\uc9c0"
+		}
+	},
+	{
+		"model": "movies.genre",
+		"pk": 36,
+		"fields": {
+			"tmbd_genre_id": 36,
+			"name": "\uc5ed\uc0ac"
+		}
+	},
+	{
+		"model": "movies.genre",
+		"pk": 27,
+		"fields": {
+			"tmbd_genre_id": 27,
+			"name": "\uacf5\ud3ec"
+		}
+	},
+	{
+		"model": "movies.genre",
+		"pk": 10402,
+		"fields": {
+			"tmbd_genre_id": 10402,
+			"name": "\uc74c\uc545"
+		}
+	},
+	{
+		"model": "movies.genre",
+		"pk": 9648,
+		"fields": {
+			"tmbd_genre_id": 9648,
+			"name": "\ubbf8\uc2a4\ud130\ub9ac"
+		}
+	},
+	{
+		"model": "movies.genre",
+		"pk": 10749,
+		"fields": {
+			"tmbd_genre_id": 10749,
+			"name": "\ub85c\ub9e8\uc2a4"
+		}
+	},
+	{
+		"model": "movies.genre",
+		"pk": 878,
+		"fields": {
+			"tmbd_genre_id": 878,
+			"name": "SF"
+		}
+	},
+	{
+		"model": "movies.genre",
+		"pk": 10770,
+		"fields": {
+			"tmbd_genre_id": 10770,
+			"name": "TV \uc601\ud654"
+		}
+	},
+	{
+		"model": "movies.genre",
+		"pk": 53,
+		"fields": {
+			"tmbd_genre_id": 53,
+			"name": "\uc2a4\ub9b4\ub7ec"
+		}
+	},
+	{
+		"model": "movies.genre",
+		"pk": 10752,
+		"fields": {
+			"tmbd_genre_id": 10752,
+			"name": "\uc804\uc7c1"
+		}
+	},
+	{
+		"model": "movies.genre",
+		"pk": 37,
+		"fields": {
+			"tmbd_genre_id": 37,
+			"name": "\uc11c\ubd80"
+		}
+	}
+]

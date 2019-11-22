@@ -1,0 +1,18 @@
+[
+{
+    "model": "movies.genre",
+    "pk": 1,
+    "fields": {
+        "tmbd_genre_id": 1,
+        "name": "\uc561\uc158"
+    }
+},
+{
+    "model": "movies.genre",
+    "pk": 2,
+    "fields": {
+        "tmbd_genre_id": 2,
+        "name": "\ub4dc\ub77c\ub9c8"
+    }
+}
+]
