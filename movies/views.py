@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Movie, Genre, Rating
+from .models import Movie, Genre, Rating, Actor
 from .forms import MovieForm, RatingForm
 from accounts.models import User
 from django.views.decorators.http import require_POST
@@ -19,9 +19,10 @@ def detail(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     ratings = movie.rating_set.all()
     rating_form = RatingForm()
-    genre_ids = movie.genre_ids.all()
+    actors = movie.actors.all()
+    genres = movie.genres.all()
     context = {'movie': movie, 'ratings': ratings,
-               'rating_form': rating_form, 'genre_ids': genre_ids, }
+               'rating_form': rating_form, 'genres': genres, 'actors': actors,}
     return render(request, 'movies/detail.html', context)
 
 

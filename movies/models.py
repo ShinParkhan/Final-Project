@@ -3,33 +3,44 @@ from django.db import models
 
 # Create your models here.
 
+
 class Genre(models.Model):
     tmbd_genre_id = models.IntegerField()
     name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
-    
+
+class Actor(models.Model):
+    tmbd_actor_id = models.IntegerField(null=True)
+    name = models.CharField(max_length=40)
+    character = models.CharField(max_length=100)
+    profile_path = models.CharField(max_length=150)
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_actors', blank=True)
+
+    def __str__(self):
+        return self.name
 
 class Movie(models.Model):
-    tmbd_id = models.IntegerField()
     title = models.CharField(max_length=150)
-    original_title = models.CharField(max_length=150)
     poster_path = models.TextField()
     backdrop_path = models.TextField(null=True)
-    popularity = models.FloatField()
-    vote_average = models.FloatField()
-    genre_ids = models.ManyToManyField(Genre, related_name='movies')
     overview = models.TextField()
+    vote_average = models.FloatField()
+    popularity = models.FloatField()
+    original_title = models.CharField(max_length=150)
     release_date = models.DateField(auto_now=False, auto_now_add=False)
-    director = models.CharField(max_length=150)
     runtime = models.IntegerField(null=True)
-    video = models.TextField()
+    director = models.CharField(max_length=150)
+    actors = models.ManyToManyField(Actor, related_name='movies', blank=True)
+    genres = models.ManyToManyField(Genre, related_name='movies')
+    video = models.TextField(blank=True)
     like_users = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name='like_movies', blank=True)
 
     def __str__(self):
         return self.title
+
 
 class Rating(models.Model):
     content = models.CharField(max_length=150)
