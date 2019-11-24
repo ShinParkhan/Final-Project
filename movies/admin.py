@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Movie, Genre, Rating
+from .models import Movie, Genre, Rating, Actor
 # Register your models here.
 
 
@@ -23,3 +23,8 @@ class RatingAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Rating, RatingAdmin)
+
+class ActorAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'tmbd_actor_id', 'name', 'character', 'profile_path')
+
+admin.site.register(Actor, ActorAdmin)

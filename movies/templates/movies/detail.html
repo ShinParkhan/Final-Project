@@ -1,0 +1,12 @@
+{% extends 'movies/base.html' %}
+{% block content %}
+<h1>DETAIL PAGE</h1>
+{{ movie.title }}
+장르:
+{% for genre in genres %}
+{{ genre }}
+{% endfor %}
+{% for actor in actors %}
+<p>{{ actor.name }} / {{ actor.character }} / <img src="https://image.tmdb.org/t/p/w500/{{actor.profile_path}}" alt=""></p>
+{% endfor %}
+{% endblock content %}
