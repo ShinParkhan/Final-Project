@@ -1,5 +1,9 @@
 {% extends 'movies/base.html' %}
-{% load static %}
 {% block content %}
-{% include  'movies/_card1.html' %}
+<h1>Main Page</h1>
+<ul>
+{% for movie in movies %}
+<li><a href="{% url 'movies:detail' movie.pk %}">{{ movie.title }}</a></li>
+{% endfor %}
+</ul>
 {% endblock content %}
