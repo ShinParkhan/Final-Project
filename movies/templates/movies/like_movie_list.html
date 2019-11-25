@@ -1,0 +1,14 @@
+{% extends 'movies/base.html' %}
+{% block content %}
+<ul>
+  {% for movie in like_movie %}
+  <li>
+    {{ movie.title }}
+    {% for genre in movie.genres.all %}
+    {{ genre }}
+    {% endfor %}
+    <a href="{% url 'movies:detail' movie.pk %}"><img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="img"></a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock content %}

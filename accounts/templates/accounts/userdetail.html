@@ -1,0 +1,68 @@
+{% extends 'movies/base.html' %}
+{% block content %}
+<h2>{{ user1.username }} 님의 상세 보기</h2>
+<hr>
+<h4>{{ user1.username }} 님이 리뷰한 영화들</h4>
+{% for rating in user1.rating_set.all %}
+<p>영화 : {{ rating.movie }}</p>
+<p>한 줄 평 :{{ rating.content }}</p>
+<p>평점 : {{ rating.score }}</p>
+{% endfor %}
+<hr>
+<h4>{{ user1.username }} 님이 좋아요한 영화</h4>
+{% for movie in user1.like_movies.all  %}
+<ul>
+  <li>{{ movie }}</li>
+</ul>
+{% endfor %}
+<hr>
+{% if user.is_authenticated %}
+{% if user1 != user %}
+{% if user in user1.followers.all %}
+<i class="fab fa-gratipay follow-button" style="font-size: 20px; color: crimson;" data-id="{{ user1.pk }}"></i>
+{% else %}
+<i class="fab fa-gratipay follow-button" style="font-size: 20px; color: black;" data-id="{{ user1.pk }}"></i>
+{% endif %}
+{% endif %}
+{% endif %}
+<hr>
+<h4>Followers : {{ user1.followers.all|length }}</h4>
+<span id="follow-count-{{ user1.pk }}">{{ user1.followers.count }}</span> 명이 팔로우합니다.
+{% for user in user1.followers.all %}
+<ul>
+  <li>{{ user }}</li>
+</ul>
+{% endfor %}
+<hr>
+<h4>Followings: {{ user1.followings.all|length }}</h4>
+{% for user in user1.followings.all %}
+<ul>
+  <li>{{ user }}</li>
+</ul>
+{% endfor %}
+
+<script>
+  const followButtons = document.querySelectorAll('.follow-button')
+  followButtons.forEach(button => {
+    button.addEventListener('click', function (event) {
+      console.log(event)
+      const userId = event.target.dataset.id
+      axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+      axios.defaults.xsrfCookieName = 'csrftoken'
+      axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+      axios.post(`/movies/follow/${userId}/`)
+        .then(response => {
+          console.log(response)
+          document.querySelector(`#follow-count-${userId}`).innerText = response.data.count
+          if (response.data.f) {
+            event.target.style.color = 'crimson'
+          } else {
+            event.target.style.color = 'black'
+          }
+        })
+        .catch(error => console.log(error))
+    })
+  })
+</script>
+
+{% endblock content %}

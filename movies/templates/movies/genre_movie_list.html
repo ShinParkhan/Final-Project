@@ -1,0 +1,10 @@
+{% extends 'movies/base.html' %}
+{% block content %}
+<h1>장르별 영화 리스트</h1>
+{{ genre }}
+{% for movie in movies %}
+{% if genre in movie.genres.all %}
+{{ movie.title}}
+{% endif %}
+{% endfor %}
+{% endblock content %}
