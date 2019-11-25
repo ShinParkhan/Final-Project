@@ -1,6 +1,7 @@
 {% extends 'movies/base.html' %}
 {% block content %}
 <h1>DETAIL PAGE</h1>
+
 <!-- 댓글 출력 -->
 {% for rating in ratings %}
 <div>
@@ -29,10 +30,20 @@
 {{ movie.title }}
 <img src="https://image.tmdb.org/t/p/w500/{{ movie.backdrop_path }}" alt="img">
 장르:
+
 {% for genre in genres %}
-{{ genre }}
+<b>{{ genre }}</b>
 {% endfor %}
+</div>
+<iframe width="425" height="349" src="{{ movie.video }}?autoplay=1&mute=1" frameborder="0" allowfullscreen></iframe>
+<div class="col-4" style="border: 1px solid black;">
+<h3>Overview</h3>
+{{movie.overview}}
+</div>
+<div>
+<div class="card-deck bg-dark">
 {% for actor in actors %}
+
 <p>{{ actor.pk }} : {{ actor.name }} / {{ actor.character }} / <img src="https://image.tmdb.org/t/p/w500/{{actor.profile_path}}" alt=""></p>
 
       {% if user in actor.like_users.all %}
@@ -69,5 +80,4 @@
     
   })
 </script>
-
 {% endblock content %}

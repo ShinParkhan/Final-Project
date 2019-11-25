@@ -2,7 +2,9 @@
 {% load bootstrap4 %}
 {% block content %}
 {% load socialaccount %}
-<div class="container" style="width: 450px; min-height: 450px; padding: 48px 40px 36px; border: 4px solid black;">
+<div class="login">
+<br>
+<div class="container p-4 bg-dark text-light" style="opacity:0.9; width: 450px; min-height: 450px; padding: 48px 40px 36px; border: 1px solid black;">
     <h2 class="text-center">회원가입</h2>
     <hr>
     <form action="" method='post'>
@@ -10,10 +12,10 @@
         
         {% bootstrap_form form %}
         <br>
-        <div class="d-flex justify-md-center">
-            {% buttons submit="회원가입"  %}{% endbuttons %}
+        <div class="row justify-content-center">
+            {% buttons submit="회원가입" %}{% endbuttons %}
         </div>
     </form>
-
+    </div>
 </div>
 {% endblock content %}

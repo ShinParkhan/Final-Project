@@ -13,6 +13,7 @@ import random
 
 def index(request):
     movies = Movie.objects.all()
+    topten = Movie.objects.order_by('-popularity')[:10]
     all_genres = Genre.objects.all()
     if request.user.is_authenticated:
         like_movie = request.user.like_movies.all()
@@ -20,11 +21,11 @@ def index(request):
             selected_movie = random.choice(like_movie)
             selected_genre = random.choice(selected_movie.genres.all())
             selected_movies = Movie.objects.filter(genres=selected_genre)
-            context = {'movies': movies, 'like_movie': like_movie, 'all_genres': all_genres, 'selected_movie': selected_movie, 'selected_movies': selected_movies, 'selected_genre': selected_genre,}
+            context = {'movies': movies, 'like_movie': like_movie, 'all_genres': all_genres, 'selected_movie': selected_movie, 'selected_movies': selected_movies, 'selected_genre': selected_genre, 'topten': topten,}
         else:
-            context = {'movies': movies, 'like_movie': like_movie, 'all_genres': all_genres,}
+            context = {'movies': movies, 'like_movie': like_movie, 'all_genres': all_genres, 'topten': topten,}
     else:
-        context = {'movies': movies, 'all_genres': all_genres,}
+        context = {'movies': movies, 'all_genres': all_genres, 'topten': topten,}
     return render(request, 'movies/index.html', context)
 
 def detail(request, movie_pk):
