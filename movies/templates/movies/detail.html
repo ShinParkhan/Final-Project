@@ -1,12 +1,73 @@
 {% extends 'movies/base.html' %}
 {% block content %}
 <h1>DETAIL PAGE</h1>
+<!-- 댓글 출력 -->
+{% for rating in ratings %}
+<div>
+<a href="{% url 'accounts:userdetail' rating.user.pk %}">{{ rating.user }}</a>
+  : {{ forloop.revcounter }} : {{ rating.content }} : {{ rating.score }}
+  {% if request.user == rating.user %}
+    <form action="{% url 'movies:ratings_delete' movie.pk rating.pk %}" method="POST" style="display: inline;">
+      {% csrf_token %}
+      <input type="submit" value="DELETE">
+    </form>
+  {% endif %}
+  </div>
+{% empty %}
+  <p><b>댓글이 없습니다.</b></p>
+{% endfor %}
+<hr>
+
+{% if request.user.is_authenticated %}
+<form action="{% url 'movies:ratings_create' movie.pk %}" method="POST">
+  {% csrf_token %}
+  {{ rating_form }}
+  <input type="submit" value="submit">
+</form>
+{% endif %}
+<iframe width="425" height="349" src="{{ movie.video }}" frameborder="0" allowfullscreen></iframe>
 {{ movie.title }}
+<img src="https://image.tmdb.org/t/p/w500/{{ movie.backdrop_path }}" alt="img">
 장르:
 {% for genre in genres %}
 {{ genre }}
 {% endfor %}
 {% for actor in actors %}
-<p>{{ actor.name }} / {{ actor.character }} / <img src="https://image.tmdb.org/t/p/w500/{{actor.profile_path}}" alt=""></p>
+<p>{{ actor.pk }} : {{ actor.name }} / {{ actor.character }} / <img src="https://image.tmdb.org/t/p/w500/{{actor.profile_path}}" alt=""></p>
+
+      {% if user in actor.like_users.all %}
+      <i class="fab fa-gratipay like-button2" style="font-size: 20px; color: crimson;" data-id="{{ movie.pk }}" data-id2="{{ actor.pk }}"></i>
+      {% else %}
+      <i class="fab fa-gratipay like-button2" style="font-size: 20px; color: black;" data-id="{{ movie.pk }}" data-id2="{{ actor.pk }}"></i>
+      {% endif %}
+
 {% endfor %}
+
+<script>
+  const likeButtons = document.querySelectorAll('.like-button2')
+  likeButtons.forEach(button => {
+    button.addEventListener('click', function (event) {
+      console.log(event)
+      //
+      const movieId = event.target.dataset.id
+      const actorId = event.target.dataset.id2
+      axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+      axios.defaults.xsrfCookieName = 'csrftoken'
+      axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+      axios.post(`/movies/${movieId}/like_actor/${actorId}/`)
+        .then(response => {
+          console.log(response)
+          //document.querySelector(`#like-count-${actorId}`).innerText = response.data.count
+          if (response.data.liked) {
+            event.target.style.color = 'crimson'
+          } else {
+            event.target.style.color = 'black'
+          }
+          })
+            .catch(error => console.log(error))
+    })
+    
+  })
+</script>
+
 {% endblock content %}

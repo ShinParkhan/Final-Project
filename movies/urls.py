@@ -10,7 +10,8 @@ urlpatterns = [
          views.ratings_delete, name='ratings_delete'),
     path('<int:movie_pk>/like/', views.like, name='like'),
     path('follow/<int:user_pk>/', views.follow, name='follow'),
-
-
-
+    path('<int:movie_pk>/like_actor/<int:actor_pk>/', views.like_actor, name='like_actor'),
+    path('like_movie_list/', views.like_movie_list, name='like_movie_list'),
+    path('like_actor_list/', views.like_actor_list, name='like_actor_list'),
+    path('<int:genre_pk>/genre_movie_list/', views.genre_movie_list, name='genre_movie_list'),
 ]
