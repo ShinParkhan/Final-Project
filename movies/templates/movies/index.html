@@ -3,34 +3,27 @@
 {% block content %}
 
 <h1>Main Page</h1>
-{% if user.is_authenticated and like_movie.count > 0 %}
   <ul>
-  좋아하신 영화: '<b>{{ selected_movie }}</b>'의 장르
-  '<b>{{ selected_genre }}</b>'를 기반으로 추천된 영화들:
-  <hr>
-  <ul>
-  {% for select in selected_movies %}
-  <li>{{select.title}}</li>
-  {% endfor %}
- </ul>
- {% endif %}
+{% include 'movies/_recommend.html' %}
 <hr>
-  {% for genre in all_genres %}
-  <a href="{% url 'movies:genre_movie_list' genre.pk %}">{{ genre }}</a>
-  {% endfor %}
+{% include 'movies/_genre_bar.html' %}
+  <hr>
   {% for movie in movies %}
   <li><a href="{% url 'movies:detail' movie.pk %}">{{ movie.title }}</a>
     {{ movie.popularity }}
-    
+    |
+      {% if user.is_authenticated %}
       {% if user in movie.like_users.all %}
       <i class="fab fa-gratipay like-button" style="font-size: 20px; color: crimson;" data-id="{{ movie.pk }}"></i>
       {% else %}
       <i class="fab fa-gratipay like-button" style="font-size: 20px; color: black;" data-id="{{ movie.pk }}"></i>
       {% endif %}
-      <span id="like-count-{{ movie.pk }}">{{ movie.like_users.count }}</span> 명이 이 글을 좋아합니다.
+      {% endif %}
+      <span id="like-count-{{ movie.pk }}">{{ movie.like_users.count }}</span> 명이 좋아합니다.
   </li>
   {% endfor %}
 </ul>
+  
 <script>
   const likeButtons = document.querySelectorAll('.like-button')
   likeButtons.forEach(button => {

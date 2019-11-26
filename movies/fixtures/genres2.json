@@ -4,7 +4,8 @@
 		"pk": 28,
 		"fields": {
 			"tmbd_genre_id": 28,
-			"name": "\uc561\uc158"
+			"name": "\uc561\uc158",
+			"original_name": ""
 		}
 	},
 	{
@@ -12,7 +13,8 @@
 		"pk": 12,
 		"fields": {
 			"tmbd_genre_id": 12,
-			"name": "\ubaa8\ud5d8"
+			"name": "\ubaa8\ud5d8",
+			"original_name": ""
 		}
 	},
 	{
@@ -20,7 +22,8 @@
 		"pk": 16,
 		"fields": {
 			"tmbd_genre_id": 16,
-			"name": "\uc560\ub2c8\uba54\uc774\uc158"
+			"name": "\uc560\ub2c8\uba54\uc774\uc158",
+			"original_name": ""
 		}
 	},
 	{
@@ -28,7 +31,9 @@
 		"pk": 35,
 		"fields": {
 			"tmbd_genre_id": 35,
-			"name": "\ucf54\ubbf8\ub514"
+			"name": "\ucf54\ubbf8\ub514",
+			"original_name": "Comedy"
+			
 		}
 	},
 	{
@@ -36,7 +41,8 @@
 		"pk": 80,
 		"fields": {
 			"tmbd_genre_id": 80,
-			"name": "\ubc94\uc8c4"
+			"name": "\ubc94\uc8c4",
+			"original_name": "Crime"
 		}
 	},
 	{
@@ -44,7 +50,8 @@
 		"pk": 99,
 		"fields": {
 			"tmbd_genre_id": 99,
-			"name": "\ub2e4\ud050\uba58\ud130\ub9ac"
+			"name": "\ub2e4\ud050\uba58\ud130\ub9ac",
+			"original_name": "Documentary"
 		}
 	},
 	{
@@ -52,7 +59,8 @@
 		"pk": 18,
 		"fields": {
 			"tmbd_genre_id": 18,
-			"name": "\ub4dc\ub77c\ub9c8"
+			"name": "\ub4dc\ub77c\ub9c8",
+			"original_name": ""
 		}
 	},
 	{
@@ -60,7 +68,8 @@
 		"pk": 10751,
 		"fields": {
 			"tmbd_genre_id": 10751,
-			"name": "\uac00\uc871"
+			"name": "\uac00\uc871",
+			"original_name": "Family"
 		}
 	},
 	{
@@ -68,7 +77,8 @@
 		"pk": 14,
 		"fields": {
 			"tmbd_genre_id": 14,
-			"name": "\ud310\ud0c0\uc9c0"
+			"name": "\ud310\ud0c0\uc9c0",
+			"original_name": ""
 		}
 	},
 	{
@@ -76,7 +86,8 @@
 		"pk": 36,
 		"fields": {
 			"tmbd_genre_id": 36,
-			"name": "\uc5ed\uc0ac"
+			"name": "\uc5ed\uc0ac",
+			"original_name": "History"
 		}
 	},
 	{
@@ -84,7 +95,8 @@
 		"pk": 27,
 		"fields": {
 			"tmbd_genre_id": 27,
-			"name": "\uacf5\ud3ec"
+			"name": "\uacf5\ud3ec",
+			"original_name": ""
 		}
 	},
 	{
@@ -92,7 +104,8 @@
 		"pk": 10402,
 		"fields": {
 			"tmbd_genre_id": 10402,
-			"name": "\uc74c\uc545"
+			"name": "\uc74c\uc545",
+			"original_name": "Music"
 		}
 	},
 	{
@@ -100,7 +113,8 @@
 		"pk": 9648,
 		"fields": {
 			"tmbd_genre_id": 9648,
-			"name": "\ubbf8\uc2a4\ud130\ub9ac"
+			"name": "\ubbf8\uc2a4\ud130\ub9ac",
+			"original_name": "Mystery"
 		}
 	},
 	{
@@ -108,7 +122,8 @@
 		"pk": 10749,
 		"fields": {
 			"tmbd_genre_id": 10749,
-			"name": "\ub85c\ub9e8\uc2a4"
+			"name": "\ub85c\ub9e8\uc2a4",
+			"original_name": "Romance"
 		}
 	},
 	{
@@ -116,7 +131,8 @@
 		"pk": 878,
 		"fields": {
 			"tmbd_genre_id": 878,
-			"name": "SF"
+			"name": "SF",
+			"original_name": "Science Fiction"
 		}
 	},
 	{
@@ -124,7 +140,8 @@
 		"pk": 10770,
 		"fields": {
 			"tmbd_genre_id": 10770,
-			"name": "TV \uc601\ud654"
+			"name": "TV \uc601\ud654",
+			"original_name": "TV Movie"
 		}
 	},
 	{
@@ -132,7 +149,8 @@
 		"pk": 53,
 		"fields": {
 			"tmbd_genre_id": 53,
-			"name": "\uc2a4\ub9b4\ub7ec"
+			"name": "\uc2a4\ub9b4\ub7ec",
+			"original_name": "Thriller"
 		}
 	},
 	{
@@ -140,7 +158,8 @@
 		"pk": 10752,
 		"fields": {
 			"tmbd_genre_id": 10752,
-			"name": "\uc804\uc7c1"
+			"name": "\uc804\uc7c1",
+			"original_name": "War"
 		}
 	},
 	{
@@ -148,7 +167,8 @@
 		"pk": 37,
 		"fields": {
 			"tmbd_genre_id": 37,
-			"name": "\uc11c\ubd80"
+			"name": "\uc11c\ubd80",
+			"original_name": "Western"
 		}
 	}
 ]
