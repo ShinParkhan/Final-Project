@@ -1,14 +1,18 @@
 {% extends 'movies/base.html' %}
 {% block content %}
-<ul>
+<div class="container">
+<div class="row justify-content-between">
+
   {% for movie in like_movie %}
-  <li>
+  <div class="my-5 mx-3" style="width:15rem;height:20rem; ">
     {{ movie.title }}
     {% for genre in movie.genres.all %}
     {{ genre }}
     {% endfor %}
-    <a href="{% url 'movies:detail' movie.pk %}"><img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="img"></a>
-  </li>
+    <a href="{% url 'movies:detail' movie.pk %}"><img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="img" style="max-width:100%;
+max-height:100%;"></a>
+  </div>
   {% endfor %}
-</ul>
+</div>
+</div>
 {% endblock content %}

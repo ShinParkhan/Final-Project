@@ -32,8 +32,8 @@
          {{ request.user }}!
         <div class="dropdown-menu aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#"><i class="far fa-address-card"></i> User Profile</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="{% url 'movies:like_movie_list' %}">Like Movies List</a>
+          <a class="dropdown-item" href="{% url 'movies:like_actor_list' %}">Like Actors List</a>
         </div>
         </a>
         {% else %}

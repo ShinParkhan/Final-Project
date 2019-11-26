@@ -1,11 +1,16 @@
 {% extends 'movies/base.html' %}
 {% block content %}
-<ul>
+<div class="container">
+<div class="row justify-content-between">
   {% for actor in like_actor %}
-  <img src="https://image.tmdb.org/t/p/w500/{{ actor.profile_path }}" alt="img">
-  <li>
-    {{ actor.name }}
-  </li>
+  <div class="my-5 mx-3 text-center" style="width:15rem;height:20rem; ">
+  <img src="https://image.tmdb.org/t/p/w500/{{ actor.profile_path }}" alt="img" style="max-width:100%;
+max-height:100%;">
+  
+    <b>{{ actor.name }}</b>
+ 
+</div>
   {% endfor %}
-</ul>
+</div>
+</div>
 {% endblock content %}

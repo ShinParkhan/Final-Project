@@ -3,14 +3,17 @@
 {% block content %}
 
 <h1>Main Page</h1>
-<ul>
-  {{ selected_movie }}
-  {{ selected_genre }}
+{% if user.is_authenticated and like_movie.count > 0 %}
+  <ul>
+  좋아하신 영화: '<b>{{ selected_movie }}</b>'의 장르
+  '<b>{{ selected_genre }}</b>'를 기반으로 추천된 영화들:
   <hr>
+  <ul>
   {% for select in selected_movies %}
-  {{select.title}}
+  <li>{{select.title}}</li>
   {% endfor %}
- 
+ </ul>
+ {% endif %}
 <hr>
   {% for genre in all_genres %}
   <a href="{% url 'movies:genre_movie_list' genre.pk %}">{{ genre }}</a>

@@ -26,7 +26,7 @@
   <input type="submit" value="submit">
 </form>
 {% endif %}
-<iframe width="425" height="349" src="{{ movie.video }}" frameborder="0" allowfullscreen></iframe>
+
 {{ movie.title }}
 <img src="https://image.tmdb.org/t/p/w500/{{ movie.backdrop_path }}" alt="img">
 장르:
@@ -40,18 +40,23 @@
 <h3>Overview</h3>
 {{movie.overview}}
 </div>
-<div>
-<div class="card-deck bg-dark">
+<div class="container">
+<div class="card-deck">
 {% for actor in actors %}
 
-<p>{{ actor.pk }} : {{ actor.name }} / {{ actor.character }} / <img src="https://image.tmdb.org/t/p/w500/{{actor.profile_path}}" alt=""></p>
-
+<div class="card text-center" style="width:18rem; height:25rem;">
+<img src="https://image.tmdb.org/t/p/w500/{{actor.profile_path}}" alt="" style="max-width:100%;max-height:100%;">
+      <p> {{ actor.name }}
+      <br>
       {% if user in actor.like_users.all %}
       <i class="fab fa-gratipay like-button2" style="font-size: 20px; color: crimson;" data-id="{{ movie.pk }}" data-id2="{{ actor.pk }}"></i>
       {% else %}
       <i class="fab fa-gratipay like-button2" style="font-size: 20px; color: black;" data-id="{{ movie.pk }}" data-id2="{{ actor.pk }}"></i>
-      {% endif %}
-
+      {% endif %}</p>
+      <div class="card-footer">
+      <small class="text-bolder">{{ actor.character }}</small>
+    </div>
+</div>
 {% endfor %}
 
 <script>
