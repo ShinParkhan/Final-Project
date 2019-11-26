@@ -1,11 +1,10 @@
-[
-	{
+[{
 		"model": "movies.genre",
 		"pk": 28,
 		"fields": {
 			"tmbd_genre_id": 28,
 			"name": "\uc561\uc158",
-			"original_name": ""
+			"original_name": "Action"
 		}
 	},
 	{
@@ -14,7 +13,7 @@
 		"fields": {
 			"tmbd_genre_id": 12,
 			"name": "\ubaa8\ud5d8",
-			"original_name": ""
+			"original_name": "Adventure"
 		}
 	},
 	{
@@ -23,7 +22,7 @@
 		"fields": {
 			"tmbd_genre_id": 16,
 			"name": "\uc560\ub2c8\uba54\uc774\uc158",
-			"original_name": ""
+			"original_name": "Animation"
 		}
 	},
 	{
@@ -33,7 +32,7 @@
 			"tmbd_genre_id": 35,
 			"name": "\ucf54\ubbf8\ub514",
 			"original_name": "Comedy"
-			
+
 		}
 	},
 	{
@@ -60,7 +59,7 @@
 		"fields": {
 			"tmbd_genre_id": 18,
 			"name": "\ub4dc\ub77c\ub9c8",
-			"original_name": ""
+			"original_name": "Drama"
 		}
 	},
 	{
@@ -78,7 +77,7 @@
 		"fields": {
 			"tmbd_genre_id": 14,
 			"name": "\ud310\ud0c0\uc9c0",
-			"original_name": ""
+			"original_name": "Fantasy"
 		}
 	},
 	{
@@ -96,7 +95,7 @@
 		"fields": {
 			"tmbd_genre_id": 27,
 			"name": "\uacf5\ud3ec",
-			"original_name": ""
+			"original_name": "Horror"
 		}
 	},
 	{

@@ -1,0 +1,24 @@
+<div class="tab-pane fade" id="average" role="tabpanel" aria-labelledby="average-tab">
+  <h4>평점 Top 5 영화 목록</h4>
+  <div class="card-group" style="background-color: black; padding:15px;">
+      {% for select in p_topfive %}
+    <div class="card bg-dark">
+      <div class="card-body p-0">
+        <figure class="snip1432">
+          <img src="https://image.tmdb.org/t/p/w500/{{ select.poster_path}}" alt="movie_poster" />
+          <figcaption>
+          <div>
+            <h3>{{ select.title }}</h3>
+            <h3>Rating: {{ select.vote_average }}</h3>
+          </div>
+          <div>
+            <h2>{{ select.original_title }}</h2>
+          </div>
+        </figcaption>
+        <a href="{% url 'movies:detail' select.pk %}"></a>
+      </figure>
+      </div>
+    </div>
+      {% endfor %}
+  </div>
+</div>
