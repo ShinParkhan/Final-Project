@@ -1,4 +1,4 @@
-  <hr>
+<div class="tab-pane fade show active" id="recommend" role="tabpanel" aria-labelledby="recommend-tab">
 {% if user.is_authenticated and like_movie.count > 0 %}
   좋아하신 영화: '<b>{{ selected_movie }}</b>'의 장르
   '<b>{{ selected_genre }}</b>'를 기반으로 추천된 영화들:
@@ -53,3 +53,4 @@
   {% endfor %}
 </div>
 {% endif %}
+</div>
