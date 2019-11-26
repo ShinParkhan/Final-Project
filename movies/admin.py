@@ -12,7 +12,7 @@ admin.site.register(Movie, MovieAdmin)
 
 
 class GenreAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'tmbd_genre_id', 'name')
+    list_display = ('pk', 'tmbd_genre_id', 'name', 'original_name')
 
     
 admin.site.register(Genre, GenreAdmin)

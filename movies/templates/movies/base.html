@@ -14,15 +14,18 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <style>
-    @import url(https://fonts.googleapis.com/css?family=Raleway:300,700);
-    @import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
-
     html,
     body {
       height: 100%;
       width: auto;
     }
-
+    {% if not user.is_authenticated %}
+    body {  
+      background: url({% static 'movies/images/bonobono.jpg' %});
+      background-positon: absolute;
+      background-size: contain;
+    }
+    {% endif %}
     a {
       color: black;
     }
@@ -79,6 +82,244 @@
     .carousel-caption:hover {
       opacity: 0.9;
     }
+
+  @import url(https://fonts.googleapis.com/css?family=Raleway:500,900);
+figure.snip1432 {
+  font-family: 'Raleway', Arial, sans-serif;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 230px;
+  min-height: 230px;
+  max-width: 315px;
+  width: 100%;
+  background: #000000;
+  color: #ffffff;
+  text-align: left;
+}
+figure.snip1432 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+}
+figure.snip1432 img {
+  opacity: 0.8;
+  width: 100%;
+  vertical-align: top;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+}
+figure.snip1432 figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+figure.snip1432 figcaption > div {
+  height: 50%;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+figure.snip1432 h2,
+figure.snip1432 h3 {
+  margin: 0;
+  position: absolute;
+  left: 0;
+  padding: 0 40px;
+  text-transform: uppercase;
+}
+figure.snip1432 h2 {
+  font-weight: 850;
+  top: 0;
+}
+figure.snip1432 h3 {
+  font-size: 1.5em;
+  bottom: 0;
+  font-weight: 500;
+}
+figure.snip1432 h3:nth-of-type(2) {
+  opacity: 0;
+  -webkit-transform: translateY(150%);
+  transform: translateY(150%);
+}
+figure.snip1432 a {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+}
+figure.snip1432:hover img,
+figure.snip1432.hover img {
+  opacity: 0.3;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+figure.snip1432:hover figcaption h3:first-of-type,
+figure.snip1432.hover figcaption h3:first-of-type {
+  -webkit-transform: translateY(150%);
+  transform: translateY(150%);
+  opacity: 0;
+}
+figure.snip1432:hover figcaption h3:nth-of-type(2),
+figure.snip1432.hover figcaption h3:nth-of-type(2) {
+  opacity: 1;
+  -webkit-transform: translateY(0%);
+  transform: translateY(0%);
+}
+
+.content {
+  
+  width: 100%;
+  padding: 0 4%;
+  padding-top: 50px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .content {
+    padding-top: 300px;
+    flex-direction: column;
+  }
+}
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+::-webkit-scrolling-wrapper-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+  background: #f1f1f1;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #292929; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.carda {
+  width: 100%;
+  max-width: 300px;
+  min-width: 200px;
+  height: 250px;
+  background-color: #292929;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24);
+  border: 2px solid rgba(7, 7, 7, 0.12);
+  font-size: 16px;   
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.icon {
+  margin: 0 auto;
+  
+  width: 80%;
+  height: 100px;
+  max-width: 100px;
+  background: linear-gradient(90deg, #FF7E7E 0%, #FF4848 40%, rgba(0, 0, 0, 0.28) 60%);
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  transition: all 0.8s ease;
+  background-position: 0px;
+  background-size: 200px;
+}
+.icon .text {
+  opacity: 1;
+  font-size: 35px;
+}
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 30px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+.carda .title {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  margin-top: 30px;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  opacity: 0.7;
+}
+
+.carda .text {
+  width: 80%;
+  margin: 0 auto;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 30px;
+  color: white;
+  font-weight: 200;
+  letter-spacing: 2px;
+  opacity: 0.5;
+  max-height:50;
+  transition: all 0.3s ease;
+}
+
+.carda:hover {
+  height: 300px;
+}
+
+.carda:hover .info {
+  height: 90%;
+}
+
+.carda:hover .text {
+  transition: all 0.3s ease;
+  opacity: 1;
+  max-height: 40px;
+}
+
+.carda:hover .icon {
+  background-position: -110px;
+  transition: all 0.3s ease;
+}
+
+.carda:hover .icon i {
+  background: linear-gradient(90deg, #FF7E7E, #FF4848);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.3;
+  transition: all 0.3s ease;
+}
+
+
   </style>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -90,7 +331,7 @@
 
   {% include 'movies/_navbar.html' %}
   {% block content %}
-  {% include 'movies/_card1.html' %}
+
   {% endblock content %}
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
