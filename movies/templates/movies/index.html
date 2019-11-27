@@ -23,9 +23,11 @@
     {{ movie.popularity }}
     
       {% if user in movie.like_users.all %}
-      <i class="fab fa-gratipay like-button" style="font-size: 20px; color: crimson;" data-id="{{ movie.pk }}"></i>
+ 
+      <i class="fas fa-heart like-button" style="font-size: 20px; color: crimson;" data-id="{{ movie.pk }}"></i>
       {% else %}
-      <i class="fab fa-gratipay like-button" style="font-size: 20px; color: black;" data-id="{{ movie.pk }}"></i>
+  
+      <i class="far fa-heart like-button" style="font-size: 20px; color: black;" data-id="{{ movie.pk }}"></i>
       {% endif %}
       <span id="like-count-{{ movie.pk }}">{{ movie.like_users.count }}</span> 명이 이 글을 좋아합니다.
   </li>
@@ -46,8 +48,11 @@
           document.querySelector(`#like-count-${movieId}`).innerText = response.data.count
           if (response.data.liked) {
             event.target.style.color = 'crimson'
+            event.target.className = 'fas fa-heart like-button' 
           } else {
             event.target.style.color = 'black'
+            
+            event.target.className = 'far fa-heart like-button' 
           }
           })
             .catch(error => console.log(error))

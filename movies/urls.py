@@ -14,4 +14,8 @@ urlpatterns = [
     path('like_movie_list/', views.like_movie_list, name='like_movie_list'),
     path('like_actor_list/', views.like_actor_list, name='like_actor_list'),
     path('<int:genre_pk>/genre_movie_list/', views.genre_movie_list, name='genre_movie_list'),
+    path('create/', views.create, name='create'),
+    path('<int:movie_pk>/delete/', views.delete, name='delete'),
+    path('<int:movie_pk>/update/', views.update, name='update'),
+    path('<int:movie_pk>/rating_update/<int:rating_pk>/', views.rating_update, name='rating_update'),
 ]

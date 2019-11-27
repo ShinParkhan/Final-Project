@@ -1,45 +1,60 @@
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
    <div class="order-1 order-md-0">
-  <a class="navbar-brand" href="{% url 'movies:index' %}">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-</div>
- <div class="ml-auto order-2">
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-   
+     <a class="navbar-brand" href="{% url 'movies:index' %}">Navbar</a>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+     </button>
+   </div>
+   <div class="ml-auto order-2">
+     <div class="collapse navbar-collapse" id="navbarNav">
+       <ul class="navbar-nav">
 
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'accounts:login' %}">Login <span class="sr-only">(current)</span></a>
+         {% if user.is_staff %}
+         <li class="nav-item">
+           <a class="nav-link" href="{% url 'accounts:staff' %}">관리자 페이지</a>
+         </li>
+         {% endif %}
+         {% if user.is_authenticated %}
+         <li class="nav-item">
+           <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link" href="{% url 'accounts:update' %}">User Update</a>
+         </li>
+         <li class="nav-item">
+        <a class="nav-link" href="{% url 'accounts:change_password' %}">Change Password</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'accounts:signup' %}">Signup</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
-  </div>
-</div>
-  <div class="mr-0 order-3">
-      <li class="nav-item dropdown" style=" list-style: none;">
-        {% if user.is_authenticated %}
-        <a class="nav-link dropdown-toggle" href="" style="color:black;" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
-        <b >Welcome, </b>
+         {% else %}
+         <li class="nav-item active">
+           <a class="nav-link" href="{% url 'accounts:login' %}">Login <span class="sr-only">(current)</span></a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link" href="{% url 'accounts:signup' %}">Signup</a>
+         </li>
+         {% endif %}
+       
+       </ul>
+     </div>
+   </div>
+   <div class="mr-0 order-3">
+     <li class="nav-item dropdown" style=" list-style: none;">
+       {% if user.is_authenticated %}
+       <a class="nav-link dropdown-toggle" href="" style="color:black;" id="navbarDropdownMenuLink" role="button"
+         data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+         <b>Welcome, </b>
          {{ request.user }}!
-        <div class="dropdown-menu aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#"><i class="far fa-address-card"></i> User Profile</a>
-          <a class="dropdown-item" href="{% url 'movies:like_movie_list' %}">Like Movies List</a>
-          <a class="dropdown-item" href="{% url 'movies:like_actor_list' %}">Like Actors List</a>
-        </div>
-        </a>
-        {% else %}
-            <b>Welcome, stranger!</b>
-        {% endif %}
-      </li>        
-    </ul>
-  </div>
-</nav>
+         <div class="dropdown-menu aria-labelledby=" navbarDropdownMenuLink">
+           <a class="dropdown-item" href="{% url 'accounts:userdetail' request.user.pk %}"><i
+               class="far fa-address-card"></i> User Profile</a>
+           <a class="dropdown-item" href="{% url 'movies:like_movie_list' %}">Like Movies List</a>
+           <a class="dropdown-item" href="{% url 'movies:like_actor_list' %}">Like Actors List</a>
+         </div>
+       </a>
+       {% else %}
+       <b>Welcome, stranger!</b>
+       {% endif %}
+     </li>
+     </ul>
+   </div>
+ </nav>
