@@ -15,6 +15,8 @@ import random
 def index(request):
     movies = Movie.objects.all()
     topten = Movie.objects.order_by('-popularity')[:10]
+    topfive = Movie.objects.order_by('-popularity')[:5]
+    p_topfive = Movie.objects.order_by('-vote_average')[:5]
     all_genres = Genre.objects.all()
     if request.user.is_authenticated:
         like_movie = request.user.like_movies.all()
@@ -23,11 +25,11 @@ def index(request):
             selected_genre = random.choice(selected_movie.genres.all())
             selected_movies = list(Movie.objects.filter(genres=selected_genre))
             random.shuffle(selected_movies)
-            context = {'movies': movies,  'like_movie': like_movie, 'all_genres': all_genres, 'selected_movie': selected_movie, 'selected_movies': selected_movies[:5], 'selected_genre': selected_genre, 'topten': topten,}
+            context = {'movies': movies,  'like_movie': like_movie, 'all_genres': all_genres, 'selected_movie': selected_movie, 'selected_movies': selected_movies[:5], 'selected_genre': selected_genre, 'topten': topten, 'p_topfive': p_topfive,}
         else:
-            context = {'movies': movies, 'like_movie': like_movie, 'all_genres': all_genres, 'topten': topten,}
+            context = {'movies': movies, 'like_movie': like_movie, 'all_genres': all_genres, 'topten': topten, 'topfive': topfive, 'p_topfive': p_topfive,}
     else:
-        context = {'movies': movies, 'all_genres': all_genres, 'topten': topten,}
+        context = {'movies': movies, 'all_genres': all_genres, 'topten': topten,'topfive': topfive, 'p_topfive': p_topfive,}
     return render(request, 'movies/index.html', context)
 
 def detail(request, movie_pk):
