@@ -14,14 +14,11 @@
 <a href="{% url 'accounts:userdetail' rating.user.pk %}">{{ rating.user }}</a>
   : {{ forloop.revcounter }} : {{ rating.content }} : {{ rating.score }}
   {% if request.user == rating.user %}
-    <form action="{% url 'movies:rating_update' movie.pk rating.pk %}" method="post">
-    {% csrf_token %}
-    <input type="submit" value="EDIT">
-    </form>
     <form action="{% url 'movies:ratings_delete' movie.pk rating.pk %}" method="POST" style="display: inline;">
       {% csrf_token %}
       <input type="submit" value="DELETE">
     </form>
+  <a href="{% url 'movies:rating_update' movie.pk rating.pk %}">수정</a>
   {% endif %}
   </div>
 {% empty %}

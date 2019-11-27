@@ -11,6 +11,8 @@ from django.contrib.admin.views.decorators import staff_member_required
 import random
 
 # Create your views here.
+def intro(request):
+    return render(request, 'movies/intro.html')
 
 def index(request):
     movies = Movie.objects.all()
@@ -99,16 +101,17 @@ def ratings_create(request, movie_pk):
 
 def rating_update(request, movie_pk, rating_pk):
     rating = get_object_or_404(Rating, pk=rating_pk)
-    if request.method == 'POST':
-        if request.user == rating.user:
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    if request.user == rating.user:
+        if request.method == 'POST':
             rating_form = RatingForm(request.POST, instance=rating)
             if rating_form.is_valid():
-                rating2 = rating_form.save(commit=False)
-                rating2.movie_id = movie_pk
-                rating2.user = request.user
-                rating2.save()
-        return redirect('movies:detail', movie_pk)            
-    context = {'rating': rating, 'rating_form': rating_form, 'rating2': rating2,}
+                rating_form.save()
+                return redirect('movies:detail', movie_pk)   
+        else:
+            rating_form = RatingForm(instance=rating)
+    else: redirect('movies:detail', movie_pk)
+    context = {'rating': rating, 'rating_form': rating_form, 'movie': movie,}
     return render(request, 'movies/rating_form.html', context)
 
 
