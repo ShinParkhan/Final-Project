@@ -19,8 +19,8 @@
     "fields": {
         "provider": "google",
         "name": "\uc2e0\uc2b9\ud638",
-        "client_id": "04b816abf3c6573b6f6df87e02ebfa24",
-        "secret": "Vz5zZqm1gVX3sVEFLsr1F0wr3tRoiApV",
+        "client_id": "747404191475-vncb6trunhat8f8dn7c6mhs5bs8febt7.apps.googleusercontent.com",
+        "secret": "ca7OPBgymrKmwihDe2hfrpf2",
         "key": "",
         "sites": [
             1
