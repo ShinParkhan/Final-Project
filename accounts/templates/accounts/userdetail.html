@@ -3,11 +3,13 @@
 {% block content %}
 
 <div class='container mt-3'>
-
-  <div class=" d-block mx-auto" style="width: 9rem;">
+  <div class="" style="max-width:100%; background-image: url({% static 'movies/images/clapperboard.jpg' %}); background-size: contain;">
+  <div class=" d-block mx-auto p-3" style="width: 9rem; height: 15rem;">
+    <div style="margin-bottom: 20px;">
     <img src="{% static 'movies/images/icon.png' %}" style="max-width: 100%; max-height: 100%;" alt="img">
-  </div>
-  <h2 class="text-center font-weight-bold"> {{ user1.username }}
+    </div>
+    </div>
+  <h2 class="text-center font-weight-bold" > {{ user1.username }}
     {% if user.is_authenticated %}
     {% if user1 != user %}
     {% if user in user1.followers.all %}
@@ -22,7 +24,9 @@
     {% endif %}
     {% endif %}
   </h2>
-
+  </div>
+</div>
+<div class='container mt-3'>
   <div class='container'>
     <div class='row d-flex justify-content-sm-around text-center'>
       <div data-toggle="modal" data-target="#followers">
@@ -151,7 +155,7 @@
       </div>
     </div>
   </div>
-
+</div>
 </div>
 <script>
   const followButtons = document.querySelectorAll('.follow-button')
@@ -181,8 +185,6 @@
   })
 </script>
 <footer>
-  <div>아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/freepik" title="Freepik">Freepik</a> from <a
-      href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
   <div>아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/freepik" title="Freepik">Freepik</a> from <a
       href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
 </footer>
