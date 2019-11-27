@@ -27,7 +27,7 @@ def index(request):
             selected_genre = random.choice(selected_movie.genres.all())
             selected_movies = list(Movie.objects.filter(genres=selected_genre))
             random.shuffle(selected_movies)
-            context = {'movies': movies,  'like_movie': like_movie, 'all_genres': all_genres, 'selected_movie': selected_movie, 'selected_movies': selected_movies[:5], 'selected_genre': selected_genre, 'topten': topten, 'p_topfive': p_topfive,}
+            context = {'movies': movies,  'like_movie': like_movie, 'all_genres': all_genres, 'selected_movie': selected_movie, 'selected_movies': selected_movies[:5], 'selected_genre': selected_genre, 'topten': topten,'topfive': topfive, 'p_topfive': p_topfive,}
         else:
             context = {'movies': movies, 'like_movie': like_movie, 'all_genres': all_genres, 'topten': topten, 'topfive': topfive, 'p_topfive': p_topfive,}
     else:

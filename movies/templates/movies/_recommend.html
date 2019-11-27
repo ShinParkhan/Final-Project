@@ -1,56 +1,26 @@
 <div class="tab-pane fade show active" id="recommend" role="tabpanel" aria-labelledby="recommend-tab">
-{% if user.is_authenticated and like_movie.count > 0 %}
   좋아하신 영화: '<b>{{ selected_movie }}</b>'의 장르
   '<b>{{ selected_genre }}</b>'를 기반으로 추천된 영화들:
-  <div class="card-group" style="background-color: black; padding:15px;">
+  <div class="card-group" style="background-color: black; padding:20px;">
   {% for select in selected_movies %}
-<div class="card bg-dark">
-<div class="card-body p-0">
-  <figure class="snip1432">
-  <img src="https://image.tmdb.org/t/p/w500/{{ select.poster_path}}" alt="movie_poster" />
-  <figcaption>
-    <div>
-      <h3>{{ select.title }}</h3>
-      <h3>Rating: {{ select.vote_average }}</h3>
+    <div class="card bg-dark">
+      <div class="card-body p-0">
+        <figure class="snip1432">
+        <img src="https://image.tmdb.org/t/p/w500/{{ select.poster_path}}" alt="movie_poster" />
+        <figcaption>
+          <div>
+            <h3>{{ select.title }}</h3>
+            <h3>Rating: {{ select.vote_average }}</h3>
+          </div>
+          <div>
+            <h2>{{ select.original_title }}</h2>
+          </div>
+        </figcaption>
+        <a href="{% url 'movies:detail' select.pk %}"></a>
+      </figure>
+      </div>
     </div>
-    <div>
-      <h2>{{ select.original_title }}</h2>
-    </div>
-  </figcaption>
-  <a href="{% url 'movies:detail' select.pk %}"></a>
-</figure>
+      {% endfor %}
+  </div>
 </div>
-</div>
-  {% endfor %}
-</div>
-{% else %}
-{% if user.is_authenticated %}
-<h5>아직 좋아요한 영화가 없는 {{ user }}를 위한 </h5>
-<h4>인기도 Top 5 영화 목록</h4>
-{% else %}
-<h5>지나가던 당신을 위한 </h5>
-<h4>인기도 Top 5 영화 목록</h4>
-{% endif %}
-<div class="card-group" style="background-color: black; padding:15px;">
-  {% for select in topfive %}
-<div class="card bg-dark">
-<div class="card-body p-0">
-  <figure class="snip1432">
-  <img src="https://image.tmdb.org/t/p/w500/{{ select.poster_path}}" alt="movie_poster" />
-  <figcaption>
-    <div>
-      <h3>{{ select.title }}</h3>
-      <h3>Rating: {{ select.vote_average }}</h3>
-    </div>
-    <div>
-      <h2>{{ select.original_title }}</h2>
-    </div>
-  </figcaption>
-  <a href="{% url 'movies:detail' select.pk %}"></a>
-</figure>
-</div>
-</div>
-  {% endfor %}
-</div>
-{% endif %}
-</div>
+
