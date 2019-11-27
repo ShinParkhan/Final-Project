@@ -7,6 +7,7 @@ from .forms import MovieForm, RatingForm
 from accounts.models import User
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse, HttpResponseBadRequest
+from django.contrib.admin.views.decorators import staff_member_required
 import random
 
 # Create your views here.
@@ -40,7 +41,49 @@ def detail(request, movie_pk):
     context = {'movie': movie, 'ratings': ratings,
                'rating_form': rating_form, 'genres': genres, 'actors': actors,}
     return render(request, 'movies/detail.html', context)
+#-----------------------------------------
+@staff_member_required # 로그인된 사람만 create로 접근가능함
+def create(request):
+    if request.method == 'POST':
+        form = MovieForm(request.POST) # 인스턴스 생성(통째로 받아온다... -> FORM이 데이터에 맞춰서 알아서 매칭해줌)
+        if form.is_valid():
+            # article = form.save() # 유효성 검사후 저장만 하면 된다(어느 필드에 있는지 model form을 쓰면 알게됨!)
+            movie = form.save(commit=False)   # article 객체만 만들고 저장은 안함
+            movie.user = request.user   # 왜래키값을 받고 저장!
+            movie.save()
+            return redirect('movies:detail', movie.pk) # get_absolute_url 작성하면 인스턴스 객체에 바로 넣을 수 있음
+    else:
+        form = MovieForm() # 인스턴스 생성
+    context = {'form': form,}
+    return render(request, 'movies/form.html', context)  # get 방식일때...
 
+@require_POST
+def delete(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    if request.user.is_staff: # 인증된 사용자만 delete 가능!!
+        movie.delete()
+        return redirect('movies:index')
+    return redirect('movies:detail', movie_pk)    # 자기 글이 아니면 삭제 불가능
+
+@login_required
+def update(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    if request.user.is_staff: # 작성자와 현재유저가 같아야 수정 가능!!!
+        if request.method == "POST":
+            form = MovieForm(request.POST, instance=movie) # request, instance 둘다 적어줘야함
+            if form.is_valid():
+                movie.save()
+                return redirect('movies:detail', movie_pk)
+        else:
+            form = MovieForm(instance=movie)
+    else:
+        return redirect('movies:index')   # 동일 인물이 아니면 홈으로 보냄.
+    # 1. POST : 검증에 실패한 form(오류 메세지도 포함된 상태)
+    # 2. GET : 초기화된 form
+    context = {'form': form, 'movie': movie,}
+    return render(request, 'movies/form.html', context) # create랑 html 공유함!(둘 다 form을 사용하므로...)
+
+# -----------------------------
 
 @require_POST
 def ratings_create(request, movie_pk):
@@ -52,6 +95,21 @@ def ratings_create(request, movie_pk):
             rating.user = request.user
             rating.save()
     return redirect('movies:detail', movie_pk)
+
+
+def rating_update(request, movie_pk, rating_pk):
+    rating = get_object_or_404(Rating, pk=rating_pk)
+    if request.method == 'POST':
+        if request.user == rating.user:
+            rating_form = RatingForm(request.POST, instance=rating)
+            if rating_form.is_valid():
+                rating2 = rating_form.save(commit=False)
+                rating2.movie_id = movie_pk
+                rating2.user = request.user
+                rating2.save()
+        return redirect('movies:detail', movie_pk)            
+    context = {'rating': rating, 'rating_form': rating_form, 'rating2': rating2,}
+    return render(request, 'movies/rating_form.html', context)
 
 
 @require_POST

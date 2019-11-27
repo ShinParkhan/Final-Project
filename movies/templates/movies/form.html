@@ -1,0 +1,22 @@
+{% extends 'movies/base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container">
+  {% if request.resolver_match.url_name == 'create' %} <!-- create로 넘어오면...-->
+  <h1 class="mb-3">Enroll New Movie</h1>
+  {% else %}
+  <h1 class="mb-3">UPDATE</h1>
+  {% endif %}
+  <form action="" method='POST'> <!-- action에 값 안보내면 현재 url에 post 방식으로 보낸다...-->
+    {% csrf_token %}
+    {% bootstrap_form form layout="horizontal"%} <!-- view 에서 들어오는 form(context) -->
+    {% buttons submit='OK' reset="Cancel" %}{% endbuttons %}
+  </form>
+  <hr>
+  {% if request.resolver_match.url_name == 'create' %}
+    <a href="{% url 'movies:index' %}" class="btn btn-info">BACK</a>
+  {% else %}
+    <a href="{% url 'movies:detail' movie.pk %}">BACK</a>
+  {% endif %}
+  </div>
+{% endblock content %}

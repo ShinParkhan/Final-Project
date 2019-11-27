@@ -1,13 +1,23 @@
 {% extends 'movies/base.html' %}
 {% block content %}
 <h1>DETAIL PAGE</h1>
-
+{% if user.is_staff %}
+<a href="{% url 'movies:update' movie.pk %}" class="btn btn-success">MOVIE EDIT</a>
+<form action="{% url 'movies:delete' movie.pk %}" method="post">
+{% csrf_token %}
+<input type="submit" value="MOVIE DELETE" class="btn btn-danger">
+</form>
+{% endif %}
 <!-- 댓글 출력 -->
 {% for rating in ratings %}
 <div>
 <a href="{% url 'accounts:userdetail' rating.user.pk %}">{{ rating.user }}</a>
   : {{ forloop.revcounter }} : {{ rating.content }} : {{ rating.score }}
   {% if request.user == rating.user %}
+    <form action="{% url 'movies:rating_update' movie.pk rating.pk %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="EDIT">
+    </form>
     <form action="{% url 'movies:ratings_delete' movie.pk rating.pk %}" method="POST" style="display: inline;">
       {% csrf_token %}
       <input type="submit" value="DELETE">
@@ -18,7 +28,7 @@
   <p><b>댓글이 없습니다.</b></p>
 {% endfor %}
 <hr>
-
+<!--댓글 입력-->
 {% if request.user.is_authenticated %}
 <form action="{% url 'movies:ratings_create' movie.pk %}" method="POST">
   {% csrf_token %}
@@ -26,7 +36,7 @@
   <input type="submit" value="submit">
 </form>
 {% endif %}
-
+<!--영화 디테일-->
 {{ movie.title }}
 <img src="https://image.tmdb.org/t/p/w500/{{ movie.backdrop_path }}" alt="img">
 장르:

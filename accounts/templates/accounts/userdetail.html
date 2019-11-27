@@ -1,46 +1,158 @@
 {% extends 'movies/base.html' %}
+{% load static %}
 {% block content %}
-<h2>{{ user1.username }} 님의 상세 보기</h2>
-<hr>
-<h4>{{ user1.username }} 님이 리뷰한 영화들</h4>
-{% for rating in user1.rating_set.all %}
-<p>영화 : {{ rating.movie }}</p>
-<p>한 줄 평 :{{ rating.content }}</p>
-<p>평점 : {{ rating.score }}</p>
-{% endfor %}
-<hr>
-<h4>{{ user1.username }} 님이 좋아요한 영화</h4>
-{% for movie in user1.like_movies.all  %}
-<ul>
-  <li>{{ movie }}</li>
-</ul>
-{% endfor %}
-<hr>
-{% if user.is_authenticated %}
-{% if user1 != user %}
-{% if user in user1.followers.all %}
-<i class="fab fa-gratipay follow-button" style="font-size: 20px; color: crimson;" data-id="{{ user1.pk }}"></i>
-{% else %}
-<i class="fab fa-gratipay follow-button" style="font-size: 20px; color: black;" data-id="{{ user1.pk }}"></i>
-{% endif %}
-{% endif %}
-{% endif %}
-<hr>
-<h4>Followers : {{ user1.followers.all|length }}</h4>
-<span id="follow-count-{{ user1.pk }}">{{ user1.followers.count }}</span> 명이 팔로우합니다.
-{% for user in user1.followers.all %}
-<ul>
-  <li>{{ user }}</li>
-</ul>
-{% endfor %}
-<hr>
-<h4>Followings: {{ user1.followings.all|length }}</h4>
-{% for user in user1.followings.all %}
-<ul>
-  <li>{{ user }}</li>
-</ul>
-{% endfor %}
 
+<div class='container mt-3'>
+
+  <div class=" d-block mx-auto" style="width: 9rem;">
+    <img src="{% static 'movies/images/icon.png' %}" style="max-width: 100%; max-height: 100%;" alt="img">
+  </div>
+  <h2 class="text-center font-weight-bold"> {{ user1.username }}
+    {% if user.is_authenticated %}
+    {% if user1 != user %}
+    {% if user in user1.followers.all %}
+    <i class="fas fa-user-minus follow-button" style="font-size: 20px; color: dodgerblue;" data-id="{{ user1.pk }}"
+      data-toggle="modal" data-target="#unfollow"></i>
+    {% else %}
+    <i class="fas fa-user-plus follow-button" style="font-size: 20px; color: black;" data-id="{{ user1.pk }}"
+      data-toggle="modal" data-target="#follow"></i>
+    {% endif %}
+    {% else %}
+    <i class="fas fa-user-plus" style="display:none; font-size: 20px; color: black;"></i>
+    {% endif %}
+    {% endif %}
+  </h2>
+
+  <div class='container'>
+    <div class='row d-flex justify-content-sm-around text-center'>
+      <div data-toggle="modal" data-target="#followers">
+        <h3>followers</h3>
+        <h4 id="follow-count-{{ user1.pk }}">{{ user1.followers.count }}</h4>
+      </div>
+      <div style="border-right: 1.5px solid black;"></div>
+      <div data-toggle="modal" data-target="#followings">
+        <h3>followings</h3>
+        <h4>{{ user1.followings.all|length }}</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="followers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">나를 팔로우한 사람들</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul>
+            {% for user in user1.followers.all %}
+            <li>{{ user }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="followings" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">내가 팔로잉하는 사람들</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul>
+            {% for user in user1.followings.all %}
+            <li>{{ user }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <a href="{% url 'movies:like_movie_list' %}" class="btn btn-outline-primary"><b>{{ user1 }}</b>님이 좋아요 한 영화</a>
+  <a href="{% url 'movies:like_actor_list' %}" class="btn btn-outline-success"><b>{{ user1 }}</b>님이 좋아요 한 배우</a>
+
+  <div class="container mt-3">
+    <h4><img src="{% static 'movies/images/icon2.png' %}" style=" width: 2rem; max-width: 100%; max-height: 100%; display: inline;" alt="img">  {{ user1.username }} 님이 작성한 리뷰</h4>
+    <br>
+    <div class="row">
+      {% for rating in user1.rating_set.all %}
+      <div class="card mb-3 mx-auto" style="max-width: 500px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="https://image.tmdb.org/t/p/w500/{{ rating.movie.poster_path }}" class="card-img" alt="img">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h3 class="card-title">{{ rating.movie }}</h3>
+              <p class="card-text">한 줄 평 : {{ rating.content }}</p>
+              <p class="card-text"><span class="badge badge-info text-light">평점 : {{ rating.score }}</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="modal fade" id="follow" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <div class="modal-body" id="exampleModalLabel">
+          <h4 class="text-center" id="exampleModalLabel">{{ user1 }}님을 팔로우 하셨습니다!</h4>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">OK</button>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="unfollow" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="exampleModalLabel">
+          <h4 class="text-center" id="exampleModalLabel">팔로우가 취소되었습니다.</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 <script>
   const followButtons = document.querySelectorAll('.follow-button')
   followButtons.forEach(button => {
@@ -55,14 +167,23 @@
           console.log(response)
           document.querySelector(`#follow-count-${userId}`).innerText = response.data.count
           if (response.data.f) {
-            event.target.style.color = 'crimson'
+            event.target.style.color = 'dodgerblue'
+            event.target.className = 'fas fa-user-minus follow-button'
+            event.target.dataset.target = '#unfollow'
           } else {
             event.target.style.color = 'black'
+            event.target.className = 'fas fa-user-plus follow-button'
+            event.target.dataset.target = '#follow'
           }
         })
         .catch(error => console.log(error))
     })
   })
 </script>
-
+<footer>
+  <div>아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/freepik" title="Freepik">Freepik</a> from <a
+      href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
+  <div>아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/freepik" title="Freepik">Freepik</a> from <a
+      href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
+</footer>
 {% endblock content %}

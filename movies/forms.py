@@ -6,8 +6,8 @@ from .models import Movie, Genre, Rating
 class MovieForm(forms.ModelForm):
     class Meta:
         model = Movie
-        fields = ('title', 'original_title', 'genres', 'release_date',
-                    'popularity', 'overview', 'director', 'runtime', 'video')
+        fields = ('title', 'poster_path', 'backdrop_path', 'overview', 'vote_average', 'popularity', 'vote_average', 'original_title', 'release_date', 'runtime', 'genres', 'director', 'actors',
+                    'video')
 
 
 class RatingForm(forms.ModelForm):

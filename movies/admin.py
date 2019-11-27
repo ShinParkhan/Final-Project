@@ -19,7 +19,7 @@ admin.site.register(Genre, GenreAdmin)
 
 
 class RatingAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'content', 'score', 'user', 'movie')
+    list_display = ('pk', 'content', 'score', )
 
 
 admin.site.register(Rating, RatingAdmin)
