@@ -1,8 +1,9 @@
 {% extends 'movies/base.html' %}
 {% block content %}
 <div class="container">
-<div class="row justify-content-between">
 
+<h2 class="text-center">{{ user }}님이 <b class='text-info'>좋아요</b>한 영화 목록</h2>
+<div class="row justify-content-between">
   {% for movie in like_movie %}
   <div class="my-5 mx-3" style="width:15rem;height:20rem; ">
     {{ movie.title }}
@@ -13,6 +14,7 @@
 max-height:100%;"></a>
   </div>
   {% endfor %}
-</div>
+  </div>
+
 </div>
 {% endblock content %}
