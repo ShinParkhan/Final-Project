@@ -1,11 +1,10 @@
 {% extends 'movies/base.html' %}
-
+{% load static %}
 
 {% block content %}
 
   
-  <ul class="nav nav-tabs" id="myTab" role="tablist" style=" font-family: 'Jua', sans-serif; font-size: 24px; letter-spacing: 2px; opacity: 0.8;">
-
+  <ul class="nav nav-tabs" id="myTab" role="tablist" style=" font-family: 'Jua', sans-serif; font-size: 24px; letter-spacing: 2px; opacity: 0.8; background: url({% static 'movies/images/wallpaper2.png' %})">
   {% if user.is_authenticated and like_movie.count > 0 %}
   <li class="nav-item">
     <a class="nav-link active" style="color:black;" id="recommend-tab" data-toggle="tab" href="#recommend" role="tab" aria-controls="recommend" aria-selected="true">추천</a>
@@ -28,7 +27,9 @@
   </li>
 </ul>
 
-<div class="tab-content shadow" id="myTabContent" style="">
+<div class="tab-content shadow" id="myTabContent" style="background: url({% static 'movies/images/wallpaper2.png' %}); min-height: 100%;
+    height: auto !important;
+    height: 100%;" >
   
 {% if user.is_authenticated and like_movie.count > 0 %}
   {% include 'movies/_recommend.html' %}
