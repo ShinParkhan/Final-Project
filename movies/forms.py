@@ -11,6 +11,14 @@ class MovieForm(forms.ModelForm):
 
 
 class RatingForm(forms.ModelForm):
+    score = forms.IntegerField(
+        widget=forms.NumberInput(
+            attrs={
+                'max': 5,
+                'min': 1,
+            }
+        )
+    )
     class Meta:
         model = Rating
         fields = ('content', 'score',)
