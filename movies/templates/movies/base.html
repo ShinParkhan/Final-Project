@@ -12,14 +12,17 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo|Gothic+A1|Black+Han+Sans|Do+Hyeon|Merriweather|Oswald|Noto+Serif+KR|Alatsi|Jua&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  
   <style>
     html,
     body {
       height: 100%;
       width: auto;
+      padding-top: 70px;
     }
-
 
     footer {
       position: absolute;
@@ -29,19 +32,14 @@
       margin-left: 50px;
     }
 
-    
-
-    {% if not user.is_authenticated %}
-
-    body {
-      background: url({% static 'movies/images/bonobono.jpg' %});
-      background-positon: center;
-      background-size: contain;
-      background-attachment: fixed;
+    .carousel-control-prev: hover {
+      -webkit-animation: shake 1s;
+      animation: shake 1s;
     }
-    {% endif %}
+
     a {
       font-weight: bold;
+      color: black;
 
     }
 
@@ -55,17 +53,23 @@
     }
 
 
-      {% if request.resolver_match.url_name == "login" or request.resolver_match.url_name == "signup" %}
+    {% if request.resolver_match.url_name == "login" or request.resolver_match.url_name == "signup" %}
 
     body {
       background: url({% static 'movies/images/login_bg2.jpg' %});
-      background-positon: absolute;
+      background-positon: center;
+      background-size: cover;
+      background-attachment: fixed;
       background-repeat: no-repeat;
-      background-size: contain;
-
     }
+  {% else %}
 
-      {% endif %}
+    body {
+      background-color: grey !important; 
+      background-color: rgba(0, 0, 0, 0.1) !important;
+      
+        }
+  {% endif %}
 
     hr {
       height: 2px;
@@ -215,7 +219,7 @@
       align-items: center;
     }
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 900px) {
       .content {
         padding-top: 300px;
         flex-direction: column;
@@ -252,11 +256,11 @@
 
     .carda {
       width: 100%;
-      max-width: 300px;
-      min-width: 200px;
+      max-width: 250px;
+      min-width: -webkit-fill-available;
       height: 250px;
-      background-color: #292929;
-      margin: 10px;
+      background-color: #a3a3a3;
+      margin: 10px 10px;
       border-radius: 10px;
       box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24);
       border: 2px solid rgba(7, 17, 7, 0.12);
@@ -269,6 +273,7 @@
       flex-direction: column;
       cursor: pointer;
       transition: all 0.3s ease;
+
     }
 
     .icon {
@@ -277,8 +282,8 @@
       width: 80%;
       height: 100px;
       max-width: 100px;
-      background: linear-gradient(90deg, #FF7E7E 0%, #FF4848 40%, rgba(0, 0, 0, 0.28) 60%);
-      border-radius: 100%;
+      background: rgb(168,171,189);
+      background: linear-gradient(61deg, rgba(168,171,189,0.9082983535210959) 17%, rgba(51,152,186,0.9026961126247374) 46%, rgba(54,106,168,0.8914916308320203) 79%);border-radius: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -313,7 +318,7 @@
       width: 100%;
       margin: 0;
       text-align: center;
-      margin-top: 30px;
+      margin-top: 50px;
       color: white;
       font-weight: 700;
       text-transform: uppercase;
@@ -328,7 +333,7 @@
       text-align: center;
       margin-top: 30px;
       color: white;
-      font-weight: 200;
+      font-weight: 300;
       letter-spacing: 2px;
       opacity: 0.5;
       height: 70%;
@@ -337,29 +342,43 @@
 
     .carda:hover {
       height: 300px;
+      color: skyblue;
     }
 
     .carda:hover .info {
-      height: 90%;
+      height: 110%;
+      color: yellow;
     }
 
     .carda:hover .text {
-      transition: all 0.3s ease;
+      transition: all 0.7s ease;
       opacity: 1;
+      color: white;
       max-height: 40px;
     }
 
     .carda:hover .icon {
-      background-position: -110px;
+      background-position: -80px;
       transition: all 0.3s ease;
     }
 
     .carda:hover .icon i {
-      background: linear-gradient(90deg, #FF7E7E, #FF4848);
+      background: linear-gradient(47deg, #FF7E7E, #FF4848);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       opacity: 0.3;
       transition: all 0.3s ease;
+    }
+
+    .card-group {
+      margin-left: 3rem;
+      margin-right: 3rem;
+    }
+    .tab-content .poster {
+      height: 25rem;
+      width: 17rem;
+      display: flex;
+      justify-content: space-evenly;
     }
   </style>
 
@@ -374,7 +393,7 @@
   {% block content %}
 
   {% endblock content %}
-
+ 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
   </script>
@@ -384,6 +403,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
   </script>
+  
 </body>
 
 </html>

@@ -6,7 +6,7 @@
 <div class="row justify-content-between">
   {% for movie in like_movie %}
   <div class="my-5 mx-3" style="width:15rem;height:20rem; ">
-    {{ movie.title }}
+    <h3>{{ movie.title }}</h3>
     {% for genre in movie.genres.all %}
     {{ genre }}
     {% endfor %}

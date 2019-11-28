@@ -1,13 +1,82 @@
 {% extends 'movies/base.html' %}
-{% block content %}
-<h1>DETAIL PAGE</h1>
-{% if user.is_staff %}
-<a href="{% url 'movies:update' movie.pk %}" class="btn btn-success">MOVIE EDIT</a>
-<form action="{% url 'movies:delete' movie.pk %}" method="post">
-{% csrf_token %}
-<input type="submit" value="MOVIE DELETE" class="btn btn-danger">
-</form>
-{% endif %}
+{% load static %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+</script>
+<script src="{% static 'movies/animation.js' %}" >
+</script> 
+{% block content %} 
+<div class="container shadow" style="background-color: #E0E0E0;">
+  <h1 style="margin-left: 2rem;">{{ movie.original_title }}</h1>
+  <h5 style="margin-left: 4rem; color:black; opacity:0.7; font-family:'Do Hyeon'">{{ movie.title}}</h5>
+  <h6 style="margin-left: 4rem; color:grey;">Release_date : {{ movie.release_date}} </h6>
+  
+  <hr style="opacity:0.4;">
+  
+  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" style="background-color:black; text-align:center;">
+        <img class="d-block w-80 mx-auto" src="https://image.tmdb.org/t/p/w500/{{ movie.backdrop_path }}" style="width:1000px; height:562px;" alt="img">
+      </div>
+      <div class="carousel-item">
+        <iframe class="d-block w-100 mx-auto" width="1000" height="562" src="{{ movie.video }}?autoplay=1&mute=1" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <p>previous</p>
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">
+      Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="false"></span>
+      <p> next </p>
+      <span class="sr-only">next</span>
+    </a>
+  </div>
+
+  <div class="p-4">
+    <h5>장르:
+    {% for genre in genres %}
+    <b>{{ genre }}</b>
+    {% endfor %}</h5>
+    <h3 style="color: black; opacity: 0.7;">Overview</h3>
+    <div class="container" >
+      <h6 style="font-family: 'Noto Serif KR', serif; font-weight:200; opacity: 0.5;">{{movie.overview}}
+      </h6>
+    </div>  
+</div>
+
+</div>
+</div>
+<hr>
+
+<!--영화 디테일-->
+<h3 class="text-center shadow-sm" style="background-color: #E0E0E0;">CAST</h3>
+
+
+<hr>
+
+<div class="container my-3" >
+<div class="card-deck" style="align-items: center; ">
+{% for actor in actors %}
+<div class="card text-center shadow" style="font-family: 'Alatsi', sans-serif;  letter-spacing: 1px; font-size: 22px; width:18rem; height:100%; border-radius: 5px; border: 2px solid rgba(7, 17, 7, 0.12); box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24);">
+<img src="https://image.tmdb.org/t/p/w500/{{actor.profile_path}}" alt="" style="max-width:100%;max-height:100%;">
+      <p> {{ actor.name }}
+      <br>
+        {% if user in actor.like_users.all %}
+        <i class="fab fa-gratipay like-button2" style="  font-size: 20px; color: crimson;" data-id="{{ movie.pk }}" data-id2="{{ actor.pk }}"></i>
+        {% else %}
+        <i class="fab fa-gratipay like-button2" style="font-size: 20px; color: black;" data-id="{{ movie.pk }}" data-id2="{{ actor.pk }}"></i>
+        {% endif %}</p>
+    <div class="card-footer" style="height: 70px; margin-bottom:0; background-color: #F2F2EB !  important; line-height: 80%; opacity: 0.7;">
+      <small class="text-bolder" style="font-family: 'Merriweather', serif !important;">{{ actor.character }}</small>
+    </div>
+</div>
+{% endfor %}
+</div>
+</div>
+
+<div class="container">
 <!-- 댓글 출력 -->
 {% for rating in ratings %}
 <div>
@@ -24,8 +93,10 @@
 {% empty %}
   <p><b>댓글이 없습니다.</b></p>
 {% endfor %}
-<hr>
+</div>
+</div>
 <!--댓글 입력-->
+<div>
 {% if request.user.is_authenticated %}
 <form action="{% url 'movies:ratings_create' movie.pk %}" method="POST">
   {% csrf_token %}
@@ -33,40 +104,18 @@
   <input type="submit" value="submit">
 </form>
 {% endif %}
-<!--영화 디테일-->
-{{ movie.title }}
-<img src="https://image.tmdb.org/t/p/w500/{{ movie.backdrop_path }}" alt="img">
-장르:
+{% if user.is_staff %}
+<a href="{% url 'movies:update' movie.pk %}" class="btn btn-success">MOVIE EDIT</a>
+<form action="{% url 'movies:delete' movie.pk %}" method="post">
+{% csrf_token %}
+<input type="submit" value="MOVIE DELETE" class="btn btn-danger">
+</form>
+{% endif %}
+</div>
 
-{% for genre in genres %}
-<b>{{ genre }}</b>
-{% endfor %}
-</div>
-<iframe width="425" height="349" src="{{ movie.video }}?autoplay=1&mute=1" frameborder="0" allowfullscreen></iframe>
-<div class="col-4" style="border: 1px solid black;">
-<h3>Overview</h3>
-{{movie.overview}}
-</div>
-<div class="container">
-<div class="card-deck">
-{% for actor in actors %}
-
-<div class="card text-center" style="width:18rem; height:25rem;">
-<img src="https://image.tmdb.org/t/p/w500/{{actor.profile_path}}" alt="" style="max-width:100%;max-height:100%;">
-      <p> {{ actor.name }}
-      <br>
-      {% if user in actor.like_users.all %}
-      <i class="fab fa-gratipay like-button2" style="font-size: 20px; color: crimson;" data-id="{{ movie.pk }}" data-id2="{{ actor.pk }}"></i>
-      {% else %}
-      <i class="fab fa-gratipay like-button2" style="font-size: 20px; color: black;" data-id="{{ movie.pk }}" data-id2="{{ actor.pk }}"></i>
-      {% endif %}</p>
-      <div class="card-footer">
-      <small class="text-bolder">{{ actor.character }}</small>
-    </div>
-</div>
-{% endfor %}
 
 <script>
+
   const likeButtons = document.querySelectorAll('.like-button2')
   likeButtons.forEach(button => {
     button.addEventListener('click', function (event) {
@@ -91,5 +140,7 @@
     })
     
   })
+
+  
 </script>
 {% endblock content %}
