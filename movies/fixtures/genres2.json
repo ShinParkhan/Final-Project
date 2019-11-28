@@ -160,14 +160,5 @@
 			"name": "\uc804\uc7c1",
 			"original_name": "War"
 		}
-	},
-	{
-		"model": "movies.genre",
-		"pk": 37,
-		"fields": {
-			"tmbd_genre_id": 37,
-			"name": "\uc11c\ubd80",
-			"original_name": "Western"
-		}
 	}
 ]

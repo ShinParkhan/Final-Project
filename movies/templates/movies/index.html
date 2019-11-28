@@ -3,29 +3,29 @@
 
 {% block content %}
 
-  <ul>
-  <hr>
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
- 
+  
+  <ul class="nav nav-tabs" id="myTab" role="tablist" style=" font-family: 'Jua', sans-serif; font-size: 24px; letter-spacing: 2px; opacity: 0.8;">
+
   {% if user.is_authenticated and like_movie.count > 0 %}
   <li class="nav-item">
-    <a class="nav-link active" id="recommend-tab" data-toggle="tab" href="#recommend" role="tab" aria-controls="recommend" aria-selected="true">추천</a>
+    <a class="nav-link active" style="color:black;" id="recommend-tab" data-toggle="tab" href="#recommend" role="tab" aria-controls="recommend" aria-selected="true">추천</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="popularity-tab" data-toggle="tab" href="#popularity" role="tab" aria-controls="popularity" aria-selected="false">인기도</a>
+    <a class="nav-link" style="color:black;" id="popularity-tab" data-toggle="tab" href="#popularity" role="tab" aria-controls="popularity" aria-selected="false">인기도</a>
   </li>
   {% else %}
   <li class="nav-item">
-    <a class="nav-link active" id="popularity-tab" data-toggle="tab" href="#popularity" role="tab" aria-controls="popularity" aria-selected="true">인기도</a>
+    <a class="nav-link active" style="color:black;" id="popularity-tab" data-toggle="tab" href="#popularity" role="tab" aria-controls="popularity" aria-selected="true">인기도</a>
   </li>
   {% endif %}
   <li class="nav-item">  
-    <a class="nav-link" id="average-tab" data-toggle="tab" href="#average" role="tab" aria-controls="average" aria-selected="false">평점</a>
+    <a class="nav-link" style="color:black;" id="average-tab" data-toggle="tab" href="#average" role="tab" aria-controls="average" aria-selected="false">평점</a>
   <li class="nav-item">
-    <a class="nav-link" id="genre-tab" data-toggle="tab" href="#genre" role="tab" aria-controls="genre" aria-selected="false">장르</a>
+    <a class="nav-link" style="color:black;" id="genre-tab" data-toggle="tab" href="#genre" role="tab" aria-controls="genre" aria-selected="false">장르</a>
   </li>
 </ul>
-<div class="tab-content" id="myTabContent">
+
+<div class="tab-content shadow" id="myTabContent" style="">
   
 {% if user.is_authenticated and like_movie.count > 0 %}
   {% include 'movies/_recommend.html' %}
@@ -34,26 +34,9 @@
 {% include 'movies/_vote_average.html' %}
 {% include 'movies/_genre_bar.html' %}
 </div>
-  <hr>
-  <div class="text-center">
-  {% for movie in movies %}
-  <li><a href="{% url 'movies:detail' movie.pk %}">{{ movie.title }}</a>
-    {{ movie.popularity }}
-    |
-      {% if user.is_authenticated %}
-      {% if user in movie.like_users.all %}
- 
-      <i class="fas fa-heart like-button" style="font-size: 20px; color: crimson;" data-id="{{ movie.pk }}"></i>
-      {% else %}
-  
-      <i class="far fa-heart like-button" style="font-size: 20px; color: black;" data-id="{{ movie.pk }}"></i>
-      {% endif %}
-      {% endif %}
-      <span id="like-count-{{ movie.pk }}">{{ movie.like_users.count }}</span> 명이 좋아합니다.
-  </li>
-  {% endfor %}
-  </div>
-</ul>
+<div class="footer text-right">
+  <p style="color: grey; font-weight: bolder; margin-bottom:0; margin-right:10px;">Team SPH</p>
+</div>
   
 <script>
   const likeButtons = document.querySelectorAll('.like-button')
