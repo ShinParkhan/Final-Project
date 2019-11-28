@@ -1,11 +1,13 @@
 {% extends 'movies/base.html' %}
 {% load bootstrap4 %}
 {% block content %}
-
+<div class="container">
+<h2>리뷰 수정페이지</h2>
+<br>
 <form action="{% url 'movies:rating_update' movie.pk rating.pk %}" method="POST">
   {% csrf_token %}
   {{ rating_form }}
   <input type="submit" value="submit">
 </form>
-
+</div>
 {% endblock content %}
