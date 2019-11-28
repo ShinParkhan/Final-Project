@@ -3,27 +3,30 @@
 {% block content %}
 
 <div class='container mt-3'>
-  <div class="" style="max-width:100%; background-image: url({% static 'movies/images/clapperboard.jpg' %}); background-size: contain;">
-  <div class=" d-block mx-auto p-3" style="width: 9rem; height: 15rem;">
-    <div style="margin-bottom: 20px;">
-    <img src="{% static 'movies/images/icon.png' %}" style="max-width: 100%; max-height: 100%;" alt="img">
+
+  <div class=""
+    style="max-width:100%; background-color: rgba(0, 0, 0, 0.5); background-size: contain;">
+    <div class=" d-block mx-auto p-3" style="width: 9rem; height: 10rem;">
+      <div style="margin-bottom: 20px;">
+        <img src="{% static 'movies/images/icon.png' %}" style="max-width: 100%; max-height: 100%;" alt="img">
+      </div>
     </div>
-  <h2 class="text-center font-weight-bold" > {{ user1.username }}
-    {% if user.is_authenticated %}
-    {% if user1 != user %}
-    {% if user in user1.followers.all %}
-    <i class="fas fa-user-minus follow-button" style="font-size: 20px; color: dodgerblue;" data-id="{{ user1.pk }}"
-      data-toggle="modal" data-target="#unfollow"></i>
-    {% else %}
-    <i class="fas fa-user-plus follow-button" style="font-size: 20px; color: black;" data-id="{{ user1.pk }}"
-      data-toggle="modal" data-target="#follow"></i>
-    {% endif %}
-    {% else %}
-    <i class="fas fa-user-plus" style="display:none; font-size: 20px; color: black;"></i>
-    {% endif %}
-    {% endif %}
-  </h2>
-    </div>
+    <h2 class="text-center font-weight-bold"> {{ user1.username }}
+      {% if user.is_authenticated %}
+      {% if user1 != user %}
+      {% if user in user1.followers.all %}
+      <i class="fas fa-user-minus follow-button" style="font-size: 20px; color: dodgerblue;" data-id="{{ user1.pk }}"
+        data-toggle="modal" data-target="#unfollow"></i>
+      {% else %}
+      <i class="fas fa-user-plus follow-button" style="font-size: 20px; color: black;" data-id="{{ user1.pk }}"
+        data-toggle="modal" data-target="#follow"></i>
+      {% endif %}
+      {% else %}
+      <i class="fas fa-user-plus" style="display:none; font-size: 20px; color: black;"></i>
+      {% endif %}
+      {% endif %}
+    </h2>
+
   </div>
 </div>
 <div class='container mt-3'>
@@ -94,7 +97,9 @@
   <a href="{% url 'movies:like_actor_list' %}" class="btn btn-outline-success"><b>{{ user1 }}</b>님이 좋아요 한 배우</a>
 
   <div class="container mt-3">
-    <h4><img src="{% static 'movies/images/icon2.png' %}" style=" width: 2rem; max-width: 100%; max-height: 100%; display: inline;" alt="img">  {{ user1.username }} 님이 작성한 리뷰</h4>
+    <h4><img src="{% static 'movies/images/icon2.png' %}"
+        style=" width: 2rem; max-width: 100%; max-height: 100%; display: inline;" alt="img"> {{ user1.username }} 님이 작성한
+      리뷰</h4>
     <br>
     <div class="row">
       {% for rating in user1.rating_set.all %}
@@ -156,6 +161,10 @@
     </div>
   </div>
 </div>
+<div class="footer text-center">
+  <div>아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/freepik" title="Freepik">Freepik</a> from <a
+      href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
+</div>
 </div>
 <script>
   const followButtons = document.querySelectorAll('.follow-button')
@@ -184,8 +193,5 @@
     })
   })
 </script>
-<footer>
-  <div>아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/freepik" title="Freepik">Freepik</a> from <a
-      href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
-</footer>
+
 {% endblock content %}

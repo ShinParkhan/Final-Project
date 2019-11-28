@@ -1,10 +1,32 @@
 {% extends 'movies/base.html' %}
 {% block content %}
-<h1>장르별 영화 리스트</h1>
-{{ genre }}
-{% for movie in movies %}
-{% if genre in movie.genres.all %}
-{{ movie.title}}
-{% endif %}
-{% endfor %}
+<div class="body" style="background-color: grey; background-color: rgba(0, 0, 0, 0.1);">
+  <div class="container">
+    <h2 class="text-center"><b class='text-info text-lg'>{{ genre }}</b> 장르 영화 목록</h2>
+    <div class="l-container">
+      <ul>
+        {% for movie in movies %}
+        {% if genre in movie.genres.all %}
+        <a href="{% url 'movies:detail' movie.pk %}" style="text-decoration: none;">
+          <li class="list mx-auto" style="max-width:72%;">
+            <div class="list__profile">
+              <div> <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}"
+                  style="width: 8rem; height:11rem;">
+              </div>
+              <div class="list__label">
+                <div class="list__label--header"> {{ movie.original_title }} </div>
+                <div class="list__label--value text-dark"> {{ movie.title }} </div>
+                <p class="card-text"><small class="text-muted">{{ movie.release_date }}</small></p>
+                <span class="badge badge-info badge-pill">{{ movie.vote_average }}</span>
+
+              </div>
+            </div>
+          </li>
+        </a>
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
 {% endblock content %}
