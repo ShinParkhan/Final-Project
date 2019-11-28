@@ -2,10 +2,10 @@
 
 ## :busts_in_silhouette: 팀원
 
-| 이름         | 팀원 정보   | 역할      |
-| ------------ | ----------- | --------- |
-| 신승호       | 영문학 전공 | front-end |
-| 박홍은(팀장) | 통계학 전공 | back-end  |
+| 이름         | 팀원 정보   | 역할      | 업무 분담           |
+| ------------ | ----------- | --------- | ------------------- |
+| 신승호       | 영문학 전공 | front-end | db 구축 / templates |
+| 박홍은(팀장) | 통계학 전공 | back-end  | db 구축 / 기능구현  |
 
 
 
@@ -60,7 +60,7 @@
 
 ## :full_moon: 모델링(ERD)
 
-
+![bonomovie](C:\Users\park\Downloads\bonomovie.png)
 
 ## :star: 핵심 기능
 
@@ -70,11 +70,10 @@
 
 ## 배포 서버 URL
 
-
+http://bonomovie.mtpppimcwz.ap-northeast-2.elasticbeanstalk.com/movies/
 
 ## 느낀점
 
 - css 가 생각대로 되지 않아 "CSS is awesome" 을 다시 한 번 느꼈다.
 - API를 이용해 원하는 데이터를 가져와 처리하는 작업이 가장 중요하다는 것을 알게 되었다.
 - JS 공부가 많이 부족했다
-- 

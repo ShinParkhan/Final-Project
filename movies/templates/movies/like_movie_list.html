@@ -1,31 +1,33 @@
 {% extends 'movies/base.html' %}
+{% load static %}
 {% block content %}
 <div class="body" style="background: url({% static 'movies/images/wallpaper2.png' %}); min-height: 100%;
     height: auto !important;
     height: 100%;">
-<div class="container">
-
-  <h2 class="text-center" style="font-family: 'Do Hyeon', sans-serif; color:white;">{{ user }}님이 <b class='text-info' style="font-family: 'Jua', sans-serif;">좋아요</b>한 영화 목록</h2>
-  <div class="l-container">
-    <ul>
-      {% for movie in like_movie %}
+  <div class="container">
+    <h2 class="text-center" style="font-family: 'Do Hyeon', sans-serif; color:white;">{{ user }}님이 <b class='text-info'
+        style="font-family: 'Jua', sans-serif;">좋아요</b>한 영화 목록</h2>
+    <div class="l-container">
+      <ul>
+        {% for movie in like_movie %}
         <a href="{% url 'movies:detail' movie.pk %}" style="text-decoration: none;">
-      <li class="list mx-auto" style="max-width:72%;">
-          <div class="list__profile">
-            <div> <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" style="width: 8rem; height:11rem;">
+          <li class="list mx-auto" style="max-width:72%;">
+            <div class="list__profile">
+              <div> <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}"
+                  style="width: 8rem; height:11rem;">
+              </div>
+              <div class="list__label">
+                <div class="list__label--header"> {{ movie.original_title }} </div>
+                <div class="list__label--value text-dark"> {{ movie.title }} </div>
+                <p class="card-text"><small class="text-muted">{{ movie.release_date }}</small></p>
+                <span class="badge badge-info badge-pill">{{ movie.vote_average }}</span>
+              </div>
             </div>
-            <div class="list__label">
-              <div class="list__label--header"> {{ movie.original_title }} </div>
-              <div class="list__label--value text-dark"> {{ movie.title }} </div>
-              <p class="card-text"><small class="text-muted">{{ movie.release_date }}</small></p>
-              <span class="badge badge-info badge-pill">{{ movie.vote_average }}</span>
-            </div>
-          </div>
-      </li>
+          </li>
         </a>
-      {% endfor %}
-    </ul>
-
+        {% endfor %}
+      </ul>
+    </div>
   </div>
-  </div>
-  {% endblock content %}
+</div>
+{% endblock content %}
