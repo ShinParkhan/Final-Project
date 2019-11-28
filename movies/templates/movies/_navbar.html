@@ -25,7 +25,7 @@
   <div class="mr-0 order-3">
       <li class="nav-item dropdown" style=" list-style: none;">
         <a class="nav-link dropdown-toggle" href="#" style="color:black;" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <b >Welcome, 
+        <b style="font-family: 'Source Sans Pro', sans-serif;">Welcome, 
         {% if user.is_authenticated %}
          {{ request.user }}!
          {% else %}
@@ -34,15 +34,15 @@
         </b>
         <div class="dropdown-menu aria-labelledby="navbarDropdownMenuLink">
         {% if user.is_authenticated %}
-          <a class="dropdown-item" href="{% url 'accounts:userdetail' user.pk %}"><i class="far fa-address-card"></i> User Profile</a>
-          <a class="dropdown-item" href="{% url 'movies:like_movie_list' %}"><i class="fas fa-film"></i> Like Movies List</a>
-          <a class="dropdown-item" href="{% url 'movies:like_actor_list' %}"><i class="far fa-smile"></i> Like Actors List</a>
+          <a class="dropdown-item" href="{% url 'accounts:userdetail' user.pk %}" style="font-family: 'Rubik', sans-serif;"><i class="far fa-address-card"></i> User Profile</a>
+          <a class="dropdown-item" href="{% url 'movies:like_movie_list' %}" style="font-family: 'Rubik', sans-serif;"><i class="fas fa-film"></i> Like Movies List</a>
+          <a class="dropdown-item" href="{% url 'movies:like_actor_list' %}" style="font-family: 'Rubik', sans-serif;"><i class="far fa-smile"></i> Like Actors List</a>
           <div style="border-top: 1px solid grey;">
-          <a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
+          <a class="dropdown-item" href="{% url 'accounts:logout' %}" style="font-family: 'Rubik', sans-serif;">Logout</a>
           </div>
          {% else %}
-           <a class="dropdown-item" href="{% url 'accounts:login' %}">Login</span></a>
-           <a class="dropdown-item" href="{% url 'accounts:signup' %}">Signup</a>
+           <a class="dropdown-item" href="{% url 'accounts:login' %}" style="font-family: 'Rubik', sans-serif;">Login</span></a>
+           <a class="dropdown-item" href="{% url 'accounts:signup' %}" style="font-family: 'Rubik', sans-serif;">Signup</a>
          {% endif %}
         </div>
         </a>

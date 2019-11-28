@@ -11,7 +11,7 @@
         <img src="{% static 'movies/images/icon.png' %}" style="max-width: 100%; max-height: 100%;" alt="img">
       </div>
     </div>
-    <h2 class="text-center font-weight-bold"> {{ user1.username }}
+    <h2 class="text-center font-weight-bold" style="font-family: 'Do Hyeon', sans-serif;"> {{ user1.username }}
       {% if user.is_authenticated %}
       {% if user1 != user %}
       {% if user in user1.followers.all %}
@@ -33,13 +33,13 @@
   <div class='container'>
     <div class='row d-flex justify-content-sm-around text-center'>
       <div data-toggle="modal" data-target="#followers">
-        <h3>followers</h3>
-        <h4 id="follow-count-{{ user1.pk }}">{{ user1.followers.count }}</h4>
+        <h3 style="font-family: 'Righteous', cursive;">followers</h3>
+        <h4 id="follow-count-{{ user1.pk }}" style="font-family: 'Righteous', cursive;">{{ user1.followers.count }}</h4>
       </div>
       <div style="border-right: 1.5px solid black;"></div>
       <div data-toggle="modal" data-target="#followings">
-        <h3>followings</h3>
-        <h4>{{ user1.followings.all|length }}</h4>
+        <h3 style="font-family: 'Righteous', cursive;">followings</h3>
+        <h4 style="font-family: 'Righteous', cursive;">{{ user1.followings.all|length }}</h4>
       </div>
     </div>
   </div>
@@ -93,11 +93,11 @@
   </div>
   <hr>
 
-  <a href="{% url 'movies:like_movie_list' %}" class="btn btn-outline-primary"><b>{{ user1 }}</b>님이 좋아요 한 영화</a>
-  <a href="{% url 'movies:like_actor_list' %}" class="btn btn-outline-success"><b>{{ user1 }}</b>님이 좋아요 한 배우</a>
+  <a href="{% url 'movies:like_movie_list' %}" class="btn btn-outline-primary" style="font-family: 'Do Hyeon', sans-serif;"><b>{{ user1 }}</b>님이 좋아요 한 영화</a>
+  <a href="{% url 'movies:like_actor_list' %}" class="btn btn-outline-success" style="font-family: 'Do Hyeon', sans-serif;"><b>{{ user1 }}</b>님이 좋아요 한 배우</a>
 
   <div class="container mt-3">
-    <h4><img src="{% static 'movies/images/icon2.png' %}"
+    <h4 style="font-family: 'Noto Sans KR', sans-serif;"><img src="{% static 'movies/images/icon2.png' %}"
         style=" width: 2rem; max-width: 100%; max-height: 100%; display: inline;" alt="img"> {{ user1.username }} 님이 작성한
       리뷰</h4>
     <br>
@@ -110,9 +110,9 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h3 class="card-title">{{ rating.movie }}</h3>
-              <p class="card-text">한 줄 평 : {{ rating.content }}</p>
-              <p class="card-text"><span class="badge badge-info text-light">평점 : {{ rating.score }}</span></p>
+              <h3 class="card-title" style="font-family: 'Noto Sans KR', sans-serif;">{{ rating.movie }}</h3>
+              <p class="card-text" style="font-family: 'Noto Sans KR', sans-serif;">한 줄 평 : {{ rating.content }}</p>
+              <p class="card-text" style="font-family: 'Noto Sans KR', sans-serif;"><span class="badge badge-info text-light">평점 : {{ rating.score }}</span></p>
             </div>
           </div>
         </div>
@@ -133,7 +133,7 @@
         </button>
 
         <div class="modal-body" id="exampleModalLabel">
-          <h4 class="text-center" id="exampleModalLabel">{{ user1 }}님을 팔로우 하셨습니다!</h4>
+          <h4 class="text-center" id="exampleModalLabel" style="font-family: 'Jua', sans-serif;">{{ user1 }}님을 팔로우 하셨습니다!</h4>
         </div>
 
         <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">OK</button>
@@ -152,7 +152,7 @@
           </button>
         </div>
         <div class="modal-body" id="exampleModalLabel">
-          <h4 class="text-center" id="exampleModalLabel">팔로우가 취소되었습니다.</h4>
+          <h4 class="text-center" id="exampleModalLabel" style="font-family: 'Jua', sans-serif;">팔로우가 취소되었습니다.</h4>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
