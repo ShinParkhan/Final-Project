@@ -6,7 +6,8 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title text-center" style="font-family: 'Passion One', serif;">
-            Users List</h3>
+            Users List
+          </h3>
         </div>
         <ul class="list-group">
           {% for user in users %}
@@ -16,6 +17,7 @@
           </div>
           {% endfor %}
         </ul>
+          <a href="{% url 'movies:create' %}" class="btn btn-info" class="d-flex ml-auto">새 영화 등록</a>
       </div>
     </div>
   </div>
