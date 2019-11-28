@@ -1,28 +1,22 @@
 {% extends 'movies/base.html' %}
 {% block content %}
 <div class="container mt-3">
-<div class="card border-light mb-3">
-  <div class="card-header text-center"><h2>관리자 페이지</h2></div>
-  <div class="card-body">
-    <div class="row d-flex justify-content-between">
-
-    <h5 class="card-title">Users List</h5>
-      {% if user.is_staff %}
-     <a href="{% url 'movies:create' %}" class="btn btn-info">새 영화 등록</a>
-      {% endif %}
-   
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title text-center" style="font-family: 'Passion One', serif;">
+            Users List</h3>
+        </div>
+        <ul class="list-group">
+          {% for user in users %}
+          <div class="list-group-item d-flex justify-content-between">
+            <p style="display: inline;">{{ user }}</p>
+            <a href="{% url 'accounts:delete' user.pk %}" class="btn btn-danger" style="display: inline;">DELETE</a>
+          </div>
+          {% endfor %}
+        </ul>
       </div>
-    <hr>
-    <ul>
-    {% for user in users %}
-    <li class="card-text mb-3">{{ user }}
-      <form action="{% url 'accounts:delete' user.pk %}" method="post" style="display: inline;">
-      {% csrf_token %}
-      <button type="submit" class="btn btn-danger">회원 삭제</button>
-      </form>
-    </li>
-    {% endfor %}
-    </ul>
     </div>
   </div>
 </div>

@@ -156,15 +156,6 @@ def like_actor(request, movie_pk, actor_pk):
         return HttpResponseBadRequest
 
 
-# @login_required
-# def like_actor(request, movie_pk, actor_pk):
-#     actor = get_object_or_404(Actor, pk=actor_pk)
-#     if actor.like_users.filter(pk=request.user.pk).exists():
-#         actor.like_users.remove(request.user)
-#     else:
-#         actor.like_users.add(request.user)
-#     return redirect('movies:detail', movie_pk)
-
 @login_required
 def follow(request, user_pk):
     if request.is_ajax():
@@ -191,18 +182,6 @@ def follow(request, user_pk):
 #         else:
 #             person.followers.add(user)
 #     return redirect('accounts:userdetail', user_pk)
-
-def movie_recommendation(request, user_pk):
-    # 좋아요한 영화들 있는 경우엔 해당 영화와 같은 장르의 다른 영화들 랜덤으로 보여주기
-    # 좋아요한 영화들 없는 경우 & 비회원 => popularity 순으로 탑10 보여주기
-
-    # 좋아요한 영화의 장르들 뽑아오기
-    # 해당 장르와 같은 장르의 영화들 랜덤으로 5~10개정도 보여주기
-    movies = Movie.objects.all()
-    user = request.user
-    like_movie = user.like_movies.all()
-    # context = {'movies': movies, 'like_movie': like_movie,}
-    return redirect('movies:index')
 
 # 좋아요한 영화 리스트
 @login_required
