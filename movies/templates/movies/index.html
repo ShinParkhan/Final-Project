@@ -4,7 +4,7 @@
 {% block content %}
 
   
-  <ul class="nav nav-tabs" id="myTab" role="tablist" style=" font-family: 'Jua', sans-serif; font-size: 24px; letter-spacing: 2px; opacity: 0.8; background: url({% static 'movies/images/wallpaper2.png' %})">
+  <ul class="nav nav-tabs" id="myTab" role="tablist" style=" font-family: 'Jua', sans-serif; font-size: 24px; letter-spacing: 2px; opacity: 0.8; background: -webkit-linear-gradient(bottom, rgba(4,102,155,1) 0%,rgba(8,104,156,1) 22%,rgba(22,110,158,0.01) 99%,rgba(22,110,158,0) 100%);">
   {% if user.is_authenticated and like_movie.count > 0 %}
   <li class="nav-item">
     <a class="nav-link active" style="color:black;" id="recommend-tab" data-toggle="tab" href="#recommend" role="tab" aria-controls="recommend" aria-selected="true">추천</a>
@@ -23,7 +23,7 @@
     <a class="nav-link" style="color:black;" id="genre-tab" data-toggle="tab" href="#genre" role="tab" aria-controls="genre" aria-selected="false">장르</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" style="color:grey;" href="{% url 'movies:all_movies' %}" role="button" aria-selected="false">모든 영화</a>
+    <a class="nav-link" style="color:black;text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; font-weight:150;" href="{% url 'movies:all_movies' %}" role="button" aria-selected="false">view all</a>
   </li>
 </ul>
 
