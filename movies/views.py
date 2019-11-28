@@ -203,3 +203,9 @@ def genre_movie_list(request, genre_pk):
     genre = get_object_or_404(Genre, pk=genre_pk)
     context = {'movies': movies, 'genre': genre,}
     return render(request, 'movies/genre_movie_list.html', context)
+
+# 모든 영화 리스트 
+def all_movies(request):
+    movies = Movie.objects.all()
+    context = {'movies': movies,}
+    return render(request, 'movies/all_movies.html', context)

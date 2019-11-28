@@ -5,12 +5,13 @@
 <div class='container mt-3'>
 
   <div class=""
-    style="max-width:100%; background-color: rgba(0, 0, 0, 0.5); background-size: contain;">
-    <div class=" d-block mx-auto p-3" style="width: 9rem; height: 10rem;">
+    style="width:100%; background-image: url({% static 'movies/images/bonobono.jpg' %}); background-size: contain; ">
+    <div class=" d-block mx-auto p-3" style="width: 9rem; height: 10rem; ">
       <div style="margin-bottom: 20px;">
-        <img src="{% static 'movies/images/icon.png' %}" style="max-width: 100%; max-height: 100%;" alt="img">
+        <img src="{% static 'movies/images/icon.png' %}" style="max-width: 109%; max-height: 100%;" alt="img">
       </div>
     </div>
+
     <h2 class="text-center font-weight-bold" style="font-family: 'Do Hyeon', sans-serif;"> {{ user1.username }}
       {% if user.is_authenticated %}
       {% if user1 != user %}
@@ -29,9 +30,10 @@
 
   </div>
 </div>
-<div class='container mt-3'>
-  <div class='container'>
+<div class='container mt-3 my-0 shadow' style="background-color: #E0E0E0;">
+  <div class='container' >
     <div class='row d-flex justify-content-sm-around text-center'>
+
       <div data-toggle="modal" data-target="#followers">
         <h3 style="font-family: 'Righteous', cursive;">followers</h3>
         <h4 id="follow-count-{{ user1.pk }}" style="font-family: 'Righteous', cursive;">{{ user1.followers.count }}</h4>
@@ -40,6 +42,7 @@
       <div data-toggle="modal" data-target="#followings">
         <h3 style="font-family: 'Righteous', cursive;">followings</h3>
         <h4 style="font-family: 'Righteous', cursive;">{{ user1.followings.all|length }}</h4>
+
       </div>
     </div>
   </div>

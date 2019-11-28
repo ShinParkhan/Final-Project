@@ -1,5 +1,6 @@
 {% extends 'movies/base.html' %}
 {% load static %}
+{% load bootstrap4 %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
 </script>
 <script src="{% static 'movies/animation.js' %}" >
@@ -12,13 +13,13 @@
   
   <hr style="opacity:0.4;">
   
-  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active" style="background-color:black; text-align:center;">
-        <img class="d-block w-80 mx-auto" src="https://image.tmdb.org/t/p/w500/{{ movie.backdrop_path }}" style="width:1000px; height:562px;" alt="img">
+  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="False">
+    <div class="carousel-inner " data-interval="False">
+      <div class="carousel-item  p-1 active" data-interval="False" style="background-color:black; text-align:center;">
+        <img class="d-block w-80 mx-auto" src="https://image.tmdb.org/t/p/w500/{{ movie.backdrop_path }}" style="width:750px; height:429px;" alt="img">
       </div>
-      <div class="carousel-item">
-        <iframe class="d-block w-100 mx-auto" width="1000" height="562" src="{{ movie.video }}?autoplay=1&mute=1" frameborder="0" allowfullscreen></iframe>
+      <div class="carousel-item p-1" data-interval="False">
+        <iframe class="d-block w-100 mx-auto" width="750" height="492" src="{{ movie.video }}?autoplay=1&mute=1" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -28,42 +29,50 @@
       Previous</span>
     </a>
     <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="false"></span>
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <p> next </p>
       <span class="sr-only">next</span>
     </a>
   </div>
 
-  <div class="p-4">
+  <div class="p-4 row justify-content-between">
     <h5>장르:
     {% for genre in genres %}
     <b>{{ genre }}</b>
     {% endfor %}</h5>
+    <div>
+    <h5 style="color: black; opacity: 0.7;"> <b style= "font-family:"> Bono Movie  </b> 에서 <span style="color:blue;" id="like-count-{{ movie.pk }}">{{ movie.like_users.count }}</span> 명이 좋아하는 영화!</h5>
+    </div>
+    
+  </div>
+  <p style="text-align:  right; margin-right:30px;">
+  {% if user.is_authenticated %}
+{% if user in movie.like_users.all %}
+<b style="color:grey;">좋아요 </b><i class="fas fa-heart like-button" style="font-size: 20px; color: crimson; cursor:pointer;" data-id="{{ movie.pk }}"></i>
+{% else %}
+<b style="color:grey;">좋아요 </b><i class="far fa-heart like-button" style="font-size: 20px; color: black; cursor:pointer;" data-id="{{ movie.pk }}"></i>
+{% endif %}
+{% endif %}</p>
+    <div class="container">
     <h3 style="color: black; opacity: 0.7;">Overview</h3>
-    <div class="container" >
-      <h6 style="font-family: 'Noto Serif KR', serif; font-weight:200; opacity: 0.5;">{{movie.overview}}
+      <h6 style="font-family: 'Noto Serif KR', serif; font-weight:200; opacity: 0.5; padding:15px;">{{movie.overview}}
       </h6>
     </div>  
-</div>
+
 
 </div>
 </div>
 
-{% if user.is_authenticated %}
-{% if user in movie.like_users.all %}
-<i class="fas fa-heart like-button" style="font-size: 20px; color: crimson;" data-id="{{ movie.pk }}"></i>
-{% else %}
-<i class="far fa-heart like-button" style="font-size: 20px; color: black;" data-id="{{ movie.pk }}"></i>
-{% endif %}
-{% endif %}
-<span id="like-count-{{ movie.pk }}">{{ movie.like_users.count }}</span> 명이 좋아합니다.
-<hr>
+
+
 
 <!--영화 디테일-->
-<h3 class="text-center shadow-sm" style="background-color: #E0E0E0;">CAST</h3>
-
-
+<div class="container" style="background-color: #E0E0E0; opacity: 0.6;!important">
 <hr>
+<h3 class="text-center shadow-sm" style="background-color: #E0E0E0; font-weight: bolder; font-size: 3rem; ">CAST</h3>
+<hr>
+</div>
+
 
 <div class="container my-3" >
 <div class="card-deck" style="align-items: center; ">
@@ -73,9 +82,9 @@
       <p> {{ actor.name }}
       <br>
         {% if user in actor.like_users.all %}
-        <i class="fab fa-gratipay like-button2" style="  font-size: 20px; color: crimson;" data-id="{{ movie.pk }}" data-id2="{{ actor.pk }}"></i>
+        <i class="fab fa-gratipay like-button2" style="  font-size: 20px; color: crimson; cursor:pointer;" data-id="{{ movie.pk }}" data-id2="{{ actor.pk }}"></i>
         {% else %}
-        <i class="fab fa-gratipay like-button2" style="font-size: 20px; color: black;" data-id="{{ movie.pk }}" data-id2="{{ actor.pk }}"></i>
+        <i class="fab fa-gratipay like-button2" style="font-size: 20px; color: black; cursor:pointer;" data-id="{{ movie.pk }}" data-id2="{{ actor.pk }}"></i>
         {% endif %}</p>
     <div class="card-footer" style="height: 70px; margin-bottom:0; background-color: #F2F2EB !  important; line-height: 80%; opacity: 0.7;">
       <small class="text-bolder" style="font-family: 'Merriweather', serif !important;">{{ actor.character }}</small>
@@ -86,17 +95,23 @@
 </div>
 
 <div class="container">
+<h3 style="font-family: 'Sunflower', sans-serif; font-weight: 500; margin-top:50px; margin-left: 20px;">댓글 목록</h3>
 <!-- 댓글 출력 -->
 {% for rating in ratings %}
-<div>
+<div class="container shadow-sm" style="background-color: grey; background-color: rgba(0, 0, 0, 0.1); border-radius:5px;">
+
 <a href="{% url 'accounts:userdetail' rating.user.pk %}">{{ rating.user }}</a>
-  : {{ forloop.revcounter }} : {{ rating.content }} : {{ rating.score }}
+   <h5>No.{{ forloop.revcounter }} </h5> <h6>평점 : {{ rating.score }}</h6>
+   <div class="bg-light" style="border: 2px solid white; font-weight: bold;font-family: 'Sunflower', sans-serif;
+border-radius: 5px;">
+    <p style="font-size: 24px !important;">{{ rating.content }}</p>
+    </div>
   {% if request.user == rating.user %}
+  <a href="{% url 'movies:rating_update' movie.pk rating.pk %}"><button type="button" class="btn btn-primary" style="opacity:0.7;">수정</button></a>
     <form action="{% url 'movies:ratings_delete' movie.pk rating.pk %}" method="POST" style="display: inline;">
       {% csrf_token %}
-      <input type="submit" value="DELETE">
+      <button type="button" class="btn btn-danger" style="opacity:0.7;">삭제</button>
     </form>
-  <a href="{% url 'movies:rating_update' movie.pk rating.pk %}">수정</a>
   {% endif %}
   </div>
 {% empty %}
@@ -104,21 +119,29 @@
 {% endfor %}
 </div>
 </div>
+
+
+
+
 <!--댓글 입력-->
-<div>
+<div class="container" style="width:40%; border: 4px ridge rgba(107,91,63,0.41);
+border-radius: 16px; padding: 20px 20px ; margin-bottom: 10px; margin-top: 10px;">
 {% if request.user.is_authenticated %}
 <form action="{% url 'movies:ratings_create' movie.pk %}" method="POST">
   {% csrf_token %}
-  {{ rating_form }}
-  <input type="submit" value="submit">
+  {% bootstrap_form rating_form %}
+ <button type="submit" class="btn btn-primary btn-sm">작성</button>
 </form>
 {% endif %}
+
+</div>
 {% if user.is_staff %}
-<a href="{% url 'movies:update' movie.pk %}" class="btn btn-success">MOVIE EDIT</a>
+<div class="row justify-content-end" >
+<a href="{% url 'movies:update' movie.pk %}" class="btn btn-success" style="margin-right:10px;">MOVIE EDIT</a>
 <form action="{% url 'movies:delete' movie.pk %}" method="post">
 {% csrf_token %}
-<input type="submit" value="MOVIE DELETE" class="btn btn-danger">
 </form>
+<input type="submit" value="MOVIE DELETE" class="btn btn-danger mr-3">
 {% endif %}
 </div>
 
@@ -129,7 +152,7 @@
     button.addEventListener('click', function (event) {
       console.log(event)
       const movieId = event.target.dataset.id
-      console.log(movieId)
+
       axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
       axios.defaults.xsrfCookieName = 'csrftoken'
       axios.defaults.xsrfHeaderName = 'X-CSRFToken'
@@ -142,6 +165,7 @@
             event.target.className = 'fas fa-heart like-button' 
           } else {
             event.target.style.color = 'black'
+            
             event.target.className = 'far fa-heart like-button' 
           }
           })
@@ -159,6 +183,7 @@
       axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
       axios.defaults.xsrfCookieName = 'csrftoken'
       axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
       axios.post(`/movies/${movieId2}/like_actor/${actorId2}/`)
         .then(response => {
           console.log(response)
