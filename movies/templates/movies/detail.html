@@ -7,9 +7,9 @@
 </script> 
 {% block content %} 
 <div class="container shadow" style="background-color: #E0E0E0;">
-  <h1 style="margin-left: 2rem;">{{ movie.original_title }}</h1>
+  <h1 style="margin-left: 2rem; font-family: 'Tinos', serif;">{{ movie.original_title }}</h1>
   <h5 style="margin-left: 4rem; color:black; opacity:0.7; font-family:'Do Hyeon'">{{ movie.title}}</h5>
-  <h6 style="margin-left: 4rem; color:grey;">Release_date : {{ movie.release_date}} </h6>
+  <h6 style="margin-left: 4rem; color:grey; font-family: 'Noto Sans KR', sans-serif;">Release_date : {{ movie.release_date}} </h6>
   
   <hr style="opacity:0.4;">
   
@@ -36,25 +36,25 @@
   </div>
 
   <div class="p-4 row justify-content-between">
-    <h5>장르:
+    <h5 style="font-family: 'Noto Sans KR', sans-serif;">장르 :
     {% for genre in genres %}
-    <b>{{ genre }}</b>
+    <b style="font-size: 1rem;"> {{ genre }}</b>
     {% endfor %}</h5>
     <div>
-    <h5 style="color: black; opacity: 0.7;"> <b style= "font-family:"> Bono Movie  </b> 에서 <span style="color:blue;" id="like-count-{{ movie.pk }}">{{ movie.like_users.count }}</span> 명이 좋아하는 영화!</h5>
+    <h5 style="font-family: 'Noto Sans KR', sans-serif; color: black; opacity: 0.7;"> <b style= "font-family: 'Neucha', cursive;"> Bono Movie  </b> 에서 <span style="color:blue;" id="like-count-{{ movie.pk }}">{{ movie.like_users.count }}</span> 명이 좋아하는 영화!</h5>
     </div>
     
   </div>
   <p style="text-align:  right; margin-right:30px;">
   {% if user.is_authenticated %}
 {% if user in movie.like_users.all %}
-<b style="color:grey;">좋아요 </b><i class="fas fa-heart like-button" style="font-size: 20px; color: crimson; cursor:pointer;" data-id="{{ movie.pk }}"></i>
+<b style="color:grey;font-weight: 700">좋아요 </b><i class="fas fa-heart like-button" style="font-size: 20px; color: crimson; cursor:pointer;" data-id="{{ movie.pk }}"></i>
 {% else %}
-<b style="color:grey;">좋아요 </b><i class="far fa-heart like-button" style="font-size: 20px; color: black; cursor:pointer;" data-id="{{ movie.pk }}"></i>
+<b style="color:grey;font-weight: 700">좋아요 </b><i class="far fa-heart like-button" style="font-size: 20px; color: black; cursor:pointer;" data-id="{{ movie.pk }}"></i>
 {% endif %}
 {% endif %}</p>
     <div class="container">
-    <h3 style="color: black; opacity: 0.7;">Overview</h3>
+    <h3 style="color: black; opacity: 0.7; font-family: 'Source Sans Pro', sans-serif; font-weight: 700">Overview</h3>
       <h6 style="font-family: 'Noto Serif KR', serif; font-weight:200; opacity: 0.5; padding:15px;">{{movie.overview}}
       </h6>
     </div>  
@@ -95,7 +95,7 @@
 </div>
 
 <div class="container">
-<h3 style="font-family: 'Sunflower', sans-serif; font-weight: 500; margin-top:50px; margin-left: 20px;">댓글 목록</h3>
+<h3 style="font-family: 'Yeon Sung', cursive; font-weight: 500; margin-top:50px; margin-left: 20px;">댓글 목록</h3>
 <!-- 댓글 출력 -->
 {% for rating in ratings %}
 <div class="container shadow-sm" style="background-color: grey; background-color: rgba(0, 0, 0, 0.1); border-radius:5px;">
