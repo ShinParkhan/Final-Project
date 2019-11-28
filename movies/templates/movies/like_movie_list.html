@@ -1,20 +1,27 @@
 {% extends 'movies/base.html' %}
 {% block content %}
+<div class="body" style="background-color: grey; background-color: rgba(0, 0, 0, 0.1);">
 <div class="container">
-
-<h2 class="text-center">{{ user }}님이 <b class='text-info'>좋아요</b>한 영화 목록</h2>
-<div class="row justify-content-between">
-  {% for movie in like_movie %}
-  <div class="my-5 mx-3" style="width:15rem;height:20rem; ">
-    {{ movie.title }}
-    {% for genre in movie.genres.all %}
-    {{ genre }}
-    {% endfor %}
-    <a href="{% url 'movies:detail' movie.pk %}"><img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="img" style="max-width:100%;
-max-height:100%;"></a>
+  <h2 class="text-center">{{ user }}님이 <b class='text-info'>좋아요</b>한 영화 목록</h2>
+  <div class="l-container">
+    <ul>
+      {% for movie in like_movie %}
+        <a href="{% url 'movies:detail' movie.pk %}" style="text-decoration: none;">
+      <li class="list mx-auto" style="max-width:72%;">
+          <div class="list__profile">
+            <div> <img src="https://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" style="width: 8rem; height:11rem;">
+            </div>
+            <div class="list__label">
+              <div class="list__label--header"> {{ movie.original_title }} </div>
+              <div class="list__label--value text-dark"> {{ movie.title }} </div>
+              <p class="card-text"><small class="text-muted">{{ movie.release_date }}</small></p>
+              <span class="badge badge-info badge-pill">{{ movie.vote_average }}</span>
+            </div>
+          </div>
+      </li>
+        </a>
+      {% endfor %}
+    </ul>
   </div>
-  {% endfor %}
   </div>
-
-</div>
-{% endblock content %}
+  {% endblock content %}
