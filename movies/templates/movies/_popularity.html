@@ -10,14 +10,14 @@
     <div class="card col-sm-3" style="background-color: #242121;">
        <div class="card-body p-0 text-center" style="padding:7px; ">
         <figure class="snip1432">
-          <img class="poster" src="https://image.tmdb.org/t/p/w500/{{ select.poster_path}}" alt="movie_poster" />
+          <img class="poster" src="https://image.tmdb.org/t/p/w500/{{ select.poster_path}}" alt="movie_poster" style="min-width:100%"/>
           <figcaption>
             <div style="font-family:'Do Hyeon', 'Gothic A1', sans-serif;">
               <h3>{{ select.title }}</h3>
               <h3>인기도 : {{ select.popularity }}</h3>
             </div>
             <div>
-              <h2>{{ select.original_title }}</h2>
+              <h2 style="position:relative; margin-left: 0px;">{{ select.original_title }}</h2>
             </div>
           </figcaption>
           <a href="{% url 'movies:detail' select.pk %}"></a>

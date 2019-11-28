@@ -5,13 +5,13 @@
 <div class='container mt-3'>
 
   <div class=""
-    style="max-width:100%; background-color: rgba(0, 0, 0, 0.5); background-size: contain;">
-    <div class=" d-block mx-auto p-3" style="width: 9rem; height: 10rem;">
+    style="width:100%; background-image: url({% static 'movies/images/bonobono.jpg' %}); background-size: contain; ">
+    <div class=" d-block mx-auto p-3" style="width: 9rem; height: 10rem; ">
       <div style="margin-bottom: 20px;">
-        <img src="{% static 'movies/images/icon.png' %}" style="max-width: 100%; max-height: 100%;" alt="img">
+        <img src="{% static 'movies/images/icon.png' %}" style="max-width: 109%; max-height: 100%;" alt="img">
       </div>
     </div>
-    <h2 class="text-center font-weight-bold"> {{ user1.username }}
+    <h2 class="text-center font-weight-bold d-block" style="background-color:grey; opacity:0.7;"> <p style="opacity:1.0 !important;">{{ user1.username }}</p>
       {% if user.is_authenticated %}
       {% if user1 != user %}
       {% if user in user1.followers.all %}
@@ -29,15 +29,15 @@
 
   </div>
 </div>
-<div class='container mt-3'>
-  <div class='container'>
+<div class='container mt-3 my-0 shadow' style="background-color: #E0E0E0;">
+  <div class='container' >
     <div class='row d-flex justify-content-sm-around text-center'>
-      <div data-toggle="modal" data-target="#followers">
+      <div data-toggle="modal" data-target="#followers" style="cursor: pointer">
         <h3>followers</h3>
         <h4 id="follow-count-{{ user1.pk }}">{{ user1.followers.count }}</h4>
       </div>
       <div style="border-right: 1.5px solid black;"></div>
-      <div data-toggle="modal" data-target="#followings">
+      <div data-toggle="modal" data-target="#followings" style="cursor: pointer">
         <h3>followings</h3>
         <h4>{{ user1.followings.all|length }}</h4>
       </div>
