@@ -1,9 +1,12 @@
 {% extends 'movies/base.html' %}
+{% load static %}
 {% block content %}
-<div class="body" style="background-color: grey; background-color: rgba(0, 0, 0, 0.1);">
-<div class="container">
+<div class="wrapper" style=" width:100%; background: url({% static 'movies/images/wallpaper2.png' %}); min-height: 100%;
+    height: auto !important;
+    height: 100%;">
+<div class="container" style="padding-top: 10px;" >
 
-  <h2 class="text-center">전체 영화 목록</h2>
+<h1 class="text-center" style="font-family: 'Do Hyeon', color: white; sans-serif; letter-spacing: 1px;">전체 영화 목록</h1>
   <div class="l-container">
     <ul>
       {% for movie in movies %}
@@ -15,7 +18,7 @@
             <div class="list__label">
               <div class="list__label--header"> {{ movie.original_title }} </div>
               <div class="list__label--value text-dark"> {{ movie.title }} </div>
-              <p class="card-text"><small class="text-muted">{{ movie.release_date }}</small></p>
+              <p class="card-text"><small class="text-muted">개봉일 {{ movie.release_date }}</small></p>
               <span class="badge badge-info badge-pill">{{ movie.vote_average }}</span>
             </div>
           </div>

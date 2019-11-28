@@ -1,16 +1,17 @@
 {% if user.is_authenticated and like_movie.count > 0 %}
-<div class="tab-pane fade" id="popularity" role="tabpanel" aria-labelledby="popularity-tab" style="margin-left:10px;margin-right:10px;">
+<div class="tab-pane fade" id="popularity" role="tabpanel" aria-label
+ledby="popularity-tab" style="margin-left:10px;margin-right:10px;">
 {% else %}
 <div class="tab-pane fade show active" id="popularity" role="tabpanel" aria-labelledby="popularity-tab" style="margin-left:10px;margin-right:10px;">
 {% endif %}
 <p class="banner" style="font-family: 'Nanum Myeongjo', serif ; font-size:23px;"> 
   <b style="font-weight:bolder; font-size: 28px;">인기도</b><b style="color: blue; opacity: 0.6;"> TOP 5</b> 영화들</p>
-  <div class="card-group" style="background-color: black; padding:20px; text-align: center;">
+    <div class="card-group" style=" padding:0px; text-align: center; background-color: transparent !important; ">
       {% for select in topfive %}
-    <div class="card col-sm-3" style="background-color: #242121;">
-       <div class="card-body p-0 text-center" style="padding:7px; ">
-        <figure class="snip1432">
-          <img class="poster" src="https://image.tmdb.org/t/p/w500/{{ select.poster_path}}" alt="movie_poster" style="min-width:100%"/>
+     <div class="card" style=" text-align: center; margin:0 3px !important;  background-color: transparent !important; border: 0 !important;">
+      <div class="card-body text-center mx-auto" style="padding:0px; text-align: center !important;  background-color: black !important;  border-radius: 10px !important;">
+        <figure class="snip1432" style=" background-color: transparent !important;">
+        <img class="poster shadow-sm" src="https://image.tmdb.org/t/p/w500/{{ select.poster_path}}" alt="movie_poster" style="max-width:100%; border-radius: 10px !important; box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24) !important;"/>
           <figcaption>
             <div style="font-family:'Do Hyeon', 'Gothic A1', sans-serif;">
               <h3>{{ select.title }}</h3>

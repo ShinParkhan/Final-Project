@@ -23,7 +23,7 @@
     body {
       height: 100%;
       width: auto;
-      padding-top: 70px;
+      padding-top: 50px;
     }
 
     footer {
@@ -66,11 +66,7 @@
     }
   {% else %}
 
-    body {
-      background-color: grey !important; 
-      background-color: rgba(0, 0, 0, 0.1) !important;
-      
-        }
+   
   {% endif %}
 
     hr {
@@ -170,7 +166,7 @@
     }
 
     figure.snip1432 h3 {
-      font-size: 1.5em;
+      font-size: 1.3em;
       bottom: 0;
       font-weight: 500;
     }
@@ -191,7 +187,7 @@
 
     figure.snip1432:hover img,
     figure.snip1432.hover img {
-      opacity: 0.3;
+      opacity: 0.5;
       -webkit-filter: grayscale(100%);
       filter: grayscale(100%);
     }
@@ -372,7 +368,7 @@
       transition: all 0.3s ease;
     }
 
-    .card-group {
+    .fbgroup {
       margin-left: 3rem;
       margin-right: 3rem;
     }
@@ -402,12 +398,13 @@
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 .list:hover {
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25), 0 5px 8px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), 0 5px 8px rgba(0, 0, 0, 0.22);
   cursor: pointer;
 }
 .list__profile {
   display: -webkit-box;
   display: -ms-flexbox;
+  margin-bottom: 10px;
   display: flex;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -434,9 +431,10 @@
 }
 .list__label--header {
   color: #9a9a9a;
+
 }
 .list__label--value {
-  font-size: 2.5em;
+  font-size: 1.5em;
 }
 @media screen and (max-width: 500px) {
   .list {
@@ -479,12 +477,12 @@
 </head>
 
 <body>
-
   {% include 'movies/_navbar.html' %}
   {% block content %}
 
   {% endblock content %}
- <div class="footer text-right" style="height:5px;">
+  
+ <div class="footer d-inline text-right shadow-sm" style="width: 100%; bottom: 0; position:fixed; background: url({% static 'movies/images/wallpaper2.png' %});">
   <p style="color: grey; font-weight: bolder; margin-bottom:0; margin-right:10px;">Team SPH</p>
 </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
